@@ -14,10 +14,11 @@
             <div class="container" v-html="data.content">
             </div>
         </article>
-        <div  style="text-align:center;margin-bottom: 35px;"><button @click="duoshuo" class="btn btn-blue btn-big" v-if="ds">加载。。评论</button></div>
+        <h2 class="end">&lt;end/&gt;</h2>
     </div>
 </template>
 <script>
+import comment from "../components/comment"
 function GetScroll() {   
   var x, y;   
   if(window.pageYOffset) {   
@@ -48,6 +49,7 @@ export default {
         duoshuo:function(t,e){
             var el = document.createElement('div');//该div不需要设置class="ds-thread"
             var ar = document.getElementsByClassName("article")[0];
+            el.id = "ds-wrapper;";
             el.setAttribute('data-thread-key', this.data._id);//必选参数
             el.setAttribute('data-url', window.location.href);//必选参数
             el.setAttribute('data-author-key', '作者的本地用户ID');//可选参数
@@ -71,9 +73,18 @@ export default {
                 clearInterval(scroll);
             }else {
                 window.scrollTo(0,y-20);
-
             }
         },5)
+    },
+    ready:function(){
+        let that = this;
+        setTimeout(function(){
+            that.duoshuo()
+            console.log(that)
+        },1000)
+    },
+    components:{
+        comment
     }
 }
 </script>

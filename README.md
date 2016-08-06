@@ -20,6 +20,8 @@ vue+vue-router+express+mongoose制作的简单博客程序（自用）
 - [ ] 增加较为完善的Markdown富文本编辑器
 - [ ] 增加专门的图片浏览页面
 - [ ] 增加互动性（待考虑）
+- [ ] 改为本地评论
+- [ ] 代码高亮
 - [ ] 完善前端细节
 - [ ] 加入vuex
 
@@ -27,5 +29,8 @@ vue+vue-router+express+mongoose制作的简单博客程序（自用）
 
 > npm run dev
 localhost:3000
+
+### 2016-8-6更新
+更改了多说样式
 
 # 未完待续。。。。

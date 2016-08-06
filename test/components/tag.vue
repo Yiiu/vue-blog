@@ -75,10 +75,11 @@ Array.prototype.isOr = function(){
 .tag {
     box-sizing: border-box;
     border-radius: 4px;
-    border: 1px solid #d2d2d2;
+    border: 2px solid #d2d2d2;
     font-size: 34px;
     color: #515151;
     outline: 0;
+    margin-bottom: 15px;
     -webkit-transition: all .1s ease-in;
     transition: all .1s ease-in;
     label {
@@ -94,6 +95,7 @@ Array.prototype.isOr = function(){
         height: 34px;
         line-height: 34px;
         width: 150px;
+
         &:focus {
             outline:none;
         }
