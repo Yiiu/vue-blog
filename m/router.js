@@ -3,6 +3,7 @@ var users = require("../db/users");
 var article = require("../db/article"); 
 var trimHtml = require('trim-html');
 var markdown = require( "markdown" ).markdown;
+var qiniu = require( "./qiniu" );
 
 // 截断 去除html标签
 String.prototype.trims = function(lengths){
@@ -176,5 +177,9 @@ module.exports = function(app){
                 }
             }
         });
+    })
+    app.post("/upload", function(req, res, next){
+        console.log(req.files )
+        //qiniu(req.body.file)
     })
 }
