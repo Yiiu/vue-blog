@@ -1,5 +1,6 @@
 <template>
     <div class="col-5-c index animated" v-if="loading" transition="op">
+        <button @click="gogo"></button>
         <article v-for="article in datas">
             <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
             <p  class="center">
@@ -62,14 +63,21 @@ div.index{
 }
 </style>
 <script>
+import { go } from '../store/actions'
 export default {
+    vuex: {
+        actions: {
+          gogo: go
+        }
+    },
     data(){
         return{
             datas:{},
             loading:false,
             nulls:false,
             page: 0,
-            querys:""
+            querys:"",
+            alertsmall:false
         }
     },
     methods:{
@@ -97,6 +105,9 @@ export default {
             }).then((response)=>{
                 console.log(response.data)
             })
+        },
+        test: function(){
+            this.alertsmall = true;
         }
     },
     init: function(){

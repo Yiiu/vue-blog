@@ -1,7 +1,6 @@
 <template>
     <div class="login col-4-c" transition="op" v-if="loading">
-        <span v-if="op=='true'">登录成功</span>
-        <span v-if="op=='false'">登录失败</span>
+        {{alertshow}}
         <label>
             <input type="text" id="name" class="y block" placeholder="帐号：" autocomplete="new-password"  v-el:name>
         </label>
@@ -12,13 +11,29 @@
             >
         </label>
         <button @click="test" class="btn btn-default block">on</button>
+        <alertsmall 
+            :show.sync="yes"
+            :title="'登录成功。'"
+        ></alertsmall>
+        <alertsmall 
+            :show.sync="no"
+            :title="'登录失败，帐号或密码错误。'"
+        ></alertsmall>
     </div>
 </template>
 <script>
+import store from '../store/store' ;
+import alertsmall from "../components/alert-small";
 export default {
+    vuex:{
+        getters:{
+            alertshow:state => state.alertshow
+        }
+    },
     data(){
         return {
-            op:"on",
+            yes:false,
+            no:false,
             loading:false,
         }
     },
@@ -30,7 +45,10 @@ export default {
             }).then((response)=>{
                 this.op = response.data.op;
                 if(this.op == "true"){
+                    this.yes = true
                     window.location.href = "#/admin";
+                }else {
+                    this.no = true
                 }
             })
         }
@@ -43,6 +61,9 @@ export default {
                 this.loading = true;
             }
         })
+    },
+    components:{
+        alertsmall
     }
 }
 </script>
