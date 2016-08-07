@@ -1,13 +1,13 @@
 <template>
     <div class="col-5-c index animated" v-if="loading" transition="op">
         <article v-for="article in datas">
-            <h2><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h2>
-            <p>
+            <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
+            <p  class="center">
                 <span><i class="iconfont">&#xe604;</i>{{ article.author }}</span>
                 <span><i class="iconfont">&#xe600;</i>{{ article.time[0] }}</span>
                 <span><i class="iconfont">&#xe602;</i>{{ article.vistits }}</span>
             </p>
-            <img :src="article.indexImg" alt="">
+            <img v-if="article.indexImg" :src="article.indexImg" alt="">
             <span v-html="article.content"></span>
             <div class="more"><a v-link="{ name:'article',params : {id : article._id}}" class="btn btn-blue btn-big">-阅读全文-</a></div>
         </article>
@@ -20,25 +20,12 @@
     </div>
 </template>
 <style lang="less">
+@import "../../dist/style/var.less";
 div.index{ 
     article {
         margin-top: 46px;
         &:first-child{
             margin-top: 0;
-        }
-        >h2 {
-            font-size: 38px;
-            text-align: center;
-            margin-bottom: 0px;
-            margin-top: 0px;
-            a {
-                transition: all 0.3s ;
-                color: #4f6a85;
-                line-height: 64px;
-                &:hover {
-                    color: #6e8eae;
-                }
-            }
         }
         &:after {
             content: "";
@@ -52,17 +39,16 @@ div.index{
         >img {
             width: 100%;
             border-radius: 15px;
+            margin-bottom: 10px;
         }
         >p {
-            margin-top: 5px;
-            text-align: center;
             >span {
                 margin: 0 2px;
-                color: #95a5a6;
+                color: @fuOne;
             }
         }
         >span {
-            color:#6e8eae;
+            color:@zhuH;
         }
         >.more {
             margin: 25px 0;
@@ -73,18 +59,6 @@ div.index{
 .nonono {
     font-size: 42px;
     text-align: center;
-}
-@media screen and (max-width:768px) {
-    div.index {
-        article {
-            >h2 {
-                font-size: 24px;
-                a{
-                    line-height: 32px;
-                }
-            }
-        }
-    }
 }
 </style>
 <script>

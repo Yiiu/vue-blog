@@ -3,10 +3,10 @@
         <span v-if="op=='true'">登录成功</span>
         <span v-if="op=='false'">登录失败</span>
         <label>
-            <input type="text" id="name" class="y block" autocomplete="new-password"  v-el:name>
+            <input type="text" id="name" class="y block" placeholder="帐号：" autocomplete="new-password"  v-el:name>
         </label>
         <label>
-            <input type="password" class="y block" id="password" autocomplete="new-password"  
+            <input type="password" class="y block" placeholder="密码：" id="password" autocomplete="new-password"  
                 v-el:password
                 @keyup.enter="test"
             >

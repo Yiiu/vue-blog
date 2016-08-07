@@ -1,0 +1,250 @@
+@import "var";
+
+@font-face {font-family: 'iconfont';
+    src: url('../font/iconfont.eot'); /* IE9*/
+    src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../font/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    overflow: hidden;
+    font-family: "微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
+    margin: 0;
+    color: @zhuC; 
+    overflow-y: scroll;
+}
+a {
+    color: @zhuC;
+    transition: all 0.3s ;
+    text-decoration: none;
+    &:hover {
+        color: @zhuH;
+    }
+}
+h1{
+    font-size: @h1Size;
+}
+h2{
+    font-size: @h2Size;
+}
+h3{
+    font-size: @h3Size;
+}
+h4{
+    font-size: @h4Size;
+}
+h1,h2,h3,h4,h5 {
+    color: @zhuC;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+p{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+input {
+    font-family: "Muli","微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
+    text-shadow: 0 0 1px #747474;
+    color: @fuOne;
+}
+button {
+        font-family: "微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
+
+}
+// 去除记住密码的黄色背景
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+.clearfix:after { visibility: hidden; display: block; content: ""; clear: both; font-size: 0; height: 0; }
+.clearfix { zoom: 1; }
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+::selection { background:#a0d3ff; }
+/* mozilla firefox */
+::-moz-selection { background:#a0d3ff; }
+
+
+.center {
+    text-align: center;
+}
+.block {
+    display: block;
+}
+[class*=col] {
+    box-sizing: border-box;
+    float: left;
+}
+.col-6-c {
+    width: 60%;
+    margin-left: 20%;
+}
+@media screen and (max-width:768px){
+    .col-6-c {
+        width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-left: 0 !important;
+    }
+    .col-4-c {
+        width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-left: 0 !important;
+    }
+    .col-5-c {
+        width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-left: 0 !important;
+    }
+}
+.col-5-c {
+    width: 50%;
+    margin-left: 25%;
+}
+.col-4-c {
+    width: 40%;
+    margin-left: 30%;
+}
+.m-2 {
+    margin-left: 20%;
+}
+.col-6-4 {
+    width: 40%;
+    padding-right: 15px;
+}
+.col-6-2 {
+    width: 20%;
+}
+.col-1 {
+    width: 10%;
+}
+.col-2 {
+    width: 20%;
+}
+.col-3 {
+    width: 30% !important;
+}
+.col-4 {
+    width: 40% !important;
+}
+.col-5 {
+    width: 50% !important;
+}
+.col-6 {
+    width: 60% !important;
+}
+.col-7 {
+    width: 70% !important;
+}
+.col-8 {
+    width: 80% !important;
+}
+.col-9 {
+    width: 90% !important;
+}
+.p-l {
+    padding-left: 15px;
+}
+.p-r {
+    padding-right: 15px;
+}
+.p-t {
+    padding-top: 15px;
+}
+.p-b {
+    padding-bottom: 15px;
+}
+.p-l-c {
+    padding-left: 7.5px;
+}
+.p-r-c {
+    padding-right: 7.5px;
+}
+.p-t-c {
+    padding-top: 7.5px;
+}
+.p-b-c {
+    padding-bottom: 7.5px;
+}
+@media screen and (max-width:1100px){
+    .p-l-c {
+        padding-left: 0;
+    }
+    .p-r-c {
+        padding-right: 0;
+    }
+    .p-t-c {
+        padding-top: 0;
+    }
+    .p-b-c {
+        padding-bottom: 0;
+    }
+    .col-3 {
+        width: 100% !important;
+    }
+    .col-4 {
+        width: 100% !important;
+    }
+    .col-5 {
+        width: 100% !important;
+    }
+    .col-6 {
+        width: 100% !important;
+    }
+    .col-7 {
+        width: 100% !important;
+    }
+    .col-8 {
+        width: 100% !important;
+    }
+    .col-9 {
+        width: 100% !important;
+    }
+    .col-5-c {
+        width: 75%;
+        margin-left: 12.5%;
+    }
+}
+@media screen and (max-width:1280px) {
+    .col-5-c {
+        width: 70%;
+        margin-left: 15%;
+    }
+
+}
+.end {
+    font-size: 40px;
+    font-weight: 400;
+    text-align: center;
+    position: relative;
+}
+/* 必需 */
+.op-transition {
+      transition: all .7s ease;
+}
+
+/* .op-enter 定义进入的开始状态 */
+/* .op-leave 定义离开的结束状态 */
+.op-enter {
+    opacity: 0;
+    height: 0;
+    transform: translate(0,60px);
+}
+.op-leave {
+    opacity: 0;
+    height: 0;
+    transform: translate(0,-60px);
+}

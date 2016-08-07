@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     devtool: false,
     entry: {
@@ -16,8 +17,14 @@ module.exports = {
             { test: /\.vue$/ , loader: "vue"},
             { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
             { test: /\.css$/, loader: 'style!css!autoprefixer'},
-            { test: /\.less$/, loader: 'style!css!less!autoprefixer'},
-            {test: /\.(png|jpg)$/, loader: "url-loader?limit=8192"}
+            { test: /\.less$/, 
+              loader: ExtractTextPlugin.extract(
+                  // activate source maps via loader query
+                  'css?sourceMap!' +
+                  'less?sourceMap'
+              )
+            },
+            { test: /\.(png|jpg)$/, loader: "url-loader?limit=8192"}
         ]
     },
   babel: {
@@ -30,9 +37,10 @@ module.exports = {
     plugins: [
       new webpack.optimize.CommonsChunkPlugin('vendors', './script/vendors.js'),
       new webpack.optimize.UglifyJsPlugin({
-          compress: {
-            warnings: false
-          }
-        }),
+        compress: {
+          warnings: false
+        }
+      }),
+      new ExtractTextPlugin('styles.css')
     ]
 }

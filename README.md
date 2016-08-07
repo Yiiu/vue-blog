@@ -33,4 +33,21 @@ localhost:3000
 ### 2016-8-6更新
 更改了多说样式
 
+### 2016-8-７更新
+精简，统一了首页和文章的样式，下一步做弹窗模块何图片模块。
+
+
+# demo
+
+![tu](http://yu7er.qiniudn.com/2016-08-07%2016-24-21%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+
+
+![tu](http://yu7er.qiniudn.com/2016-08-07%2016-21-41%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+
+
+![tu](http://yu7er.qiniudn.com/2016-08-07%2016-22-48%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+
+
+![tu](http://yu7er.qiniudn.com/2016-08-07%2016-20-31%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
+
 # 未完待续。。。。

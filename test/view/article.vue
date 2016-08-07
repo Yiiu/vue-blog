@@ -2,7 +2,7 @@
     <div class="col-6-c article" v-if="loading" transition="op">
         <article>
             <h1 class="title">{{data.title}}</h1>
-            <p>
+            <p class="center">
                 <span><i class="iconfont">&#xe604;</i>{{data.author}}</span>
                 <span><i class="iconfont">&#xe600;</i>{{data.time}}</span>
                 <span><i class="iconfont">&#xe602;</i>{{data.vistits}}</span>
@@ -89,33 +89,51 @@ export default {
 }
 </script>
 <style lang="less">
+@import "../../dist/style/var.less";
 .content{
     overflow-wrap: break-word;
 }
 .article {
     article {
+        margin-bottom: 15px;
+        &:after {
+            content: "";
+            display: block;
+            width: 20%;
+            height: 1px;
+            background: #ccc;
+            margin-left: 40%;
+            margin-top: 15px;
+        }
         >h1 {
-            margin-top: 0;
             text-align: center;
-            font-size: 38px;
-            margin-bottom: 5px;
+            font-size: @h1Size;
         }
         >p {
-            text-align: center;
             margin-bottom: 48px;
-            span {
-                margin: 0 5px;
+            >span {
+                margin: 0 2px;
+                color: @fuOne;
             }
         }
         >.container {
+            h1 {
+                color:@h2Size;
+            }
+            h2 {
+                color:@h3Size;
+            }
+            h3 {
+                color:@h4Size + 2;
+            }
+            h4 {
+                color:@pSize + 2;
+            }
             p {
-                font-size: 18px;
-                color: #4f6a85;
+                font-size: @pSize;
             }
             hr {
-                background: #fff;
-                color: #fff;
-                background-color: #ccc;
+                background-color: #95a5a6;
                 height: 1px;
                 border: none;
             }
