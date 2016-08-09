@@ -118,22 +118,22 @@ export default {
         }
         >.container {
             h1 {
-                color:@h2Size;
+                font-size:@h2Size;
             }
             h2 {
-                color:@h3Size;
+                font-size:@h3Size;
             }
             h3 {
-                color:@h4Size + 2;
+                font-size:@h4Size + 2;
             }
             h4 {
-                color:@pSize + 2;
+                font-size:@pSize + 2;
             }
             p {
                 font-size: @pSize;
             }
             hr {
-                background-color: #95a5a6;
+                background-color: #e8e8e8;
                 height: 1px;
                 border: none;
             }

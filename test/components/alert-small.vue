@@ -5,25 +5,26 @@
 
         }" v-if="show" transition="alertsmall">
         <span>{{ title }}</span>
-        <i class="iconfont" @click="show = false">&#xe60c;</i>
+        <i class="iconfont" @click="alertshow(true)">&#xe60c;</i>
         <div class="axis" v-bind:style="{transition: time/1000 + 's width linear'}" transition="axis"  v-if="show"></div>
     </div>
 </template>
 <script>
+import { alertshow, alerttitle, alertstyle } from '../store/actions' ;
+import { getAlertshow,getAlertTitle,getAlertStyle,getAlertTime } from '../store/getters' ;
+
 export default {
-    props:{
-        show:{
-            type:Boolean,
+    vuex:{
+        getters:{
+            show: state => state.alertshow,
+            title: state => state.alerttitle,
+            style: state => state.alertstyle,
+            time: state => state.alerttime,
         },
-        title:{
-            type:String,
-        },
-        time:{
-            type:Number,
-            default:1000
-        },
-        style:{
-            type:String
+        actions:{
+            alertshow,
+            alerttitle,
+            alertstyle
         }
     },
     watch:{
@@ -33,7 +34,8 @@ export default {
                 clearTimeout(that._timeout)
             }
             that._timeout = setTimeout(function(){
-                that.show = false;
+                that.alertshow(false);
+                that.alertstyle("");
             },that.time)
         }
     }
@@ -41,8 +43,8 @@ export default {
 </script>
 <style lang="less">
 .alert-warn {
-    background: #ff9898;
-    color: #fff;
+    background: #ea6f6f !important;
+    color: #fff !important;
 }
 .alert-small {
     z-index: 9999;

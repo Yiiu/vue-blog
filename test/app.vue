@@ -6,8 +6,7 @@
         	<router-view></router-view>
         </div>
         <footers></footers>
-        <alertsmall 
-        ></alertsmall>
+        <alertsmall></alertsmall>
     </div>
 </template>
 <style>
@@ -24,13 +23,13 @@ import footers from "./components/footer";
 export default {
     vuex:{
         getters:{
-            go:getAlertshow
+            alertshow:state => state.alertshow
         }
     },
     components: {
         headers,
         footers,
-        alertsmall
+        alertsmall,
     },
     store
 }

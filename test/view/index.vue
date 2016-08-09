@@ -1,6 +1,6 @@
 <template>
     <div class="col-5-c index animated" v-if="loading" transition="op">
-        <button @click="gogo"></button>
+        <button @click="alerts"></button>
         <article v-for="article in datas">
             <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
             <p  class="center">
@@ -18,6 +18,7 @@
                 --加。。载--
             </a>
         </p>
+        <alert :show.sync="alert"></alert>
     </div>
 </template>
 <style lang="less">
@@ -63,11 +64,12 @@ div.index{
 }
 </style>
 <script>
-import { go } from '../store/actions'
+import alert from "../components/alert";
+import { alertshow } from '../store/actions'
 export default {
     vuex: {
         actions: {
-          gogo: go
+          alertshow
         }
     },
     data(){
@@ -77,7 +79,8 @@ export default {
             nulls:false,
             page: 0,
             querys:"",
-            alertsmall:false
+            alertsmall:false,
+            alert:false
         }
     },
     methods:{
@@ -108,6 +111,9 @@ export default {
         },
         test: function(){
             this.alertsmall = true;
+        },
+        alerts:function(){
+            this.alert = true;
         }
     },
     init: function(){
@@ -120,6 +126,9 @@ export default {
                 this.nulls = true
             }
         })
+    },
+    components:{
+        alert
     }
 }
 </script>

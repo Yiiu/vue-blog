@@ -1,5 +1,4 @@
 <template>
-    <div>
     <div class="admin col-6-c" v-if="loading">
         <div class="btns clearfix">
             <a v-link="{ name:'index' }" class="btn btn-blue" style="font-size: 16px;float: left;">返回首页</a>
@@ -40,8 +39,7 @@
                 </div>
             </li>
         </ul>
-    </div>
-    <loading :loadings="loading"></loading>
+
     </div>
 </template>
 <style lang="less">
@@ -88,7 +86,6 @@
         }
     }
 }
-
 </style>
 <script>
 import loading from "../components/loading"
