@@ -1,9 +1,9 @@
 <template>
-    <div class="alert" v-if="show" transition="tt">
+    <div class="alert" v-if="show" transition="tt"><slot></slot>
         <div class="container" v-if="show"  transition="alerts">
-            <p class="title">确定删除？{{title}}</p>
+            <p class="title">{{title}}</p>
             <p class="button">
-                <button class="btn" @click="callbacks">删除</button><button class="btn" @click="back">算了</button>
+                <button class="btn" @click="_cancel">{{cancelText}}</button><button class="btn" @click="_ok">{{okText}}</button>
             </p>
         </div>
     </div>
@@ -16,15 +16,50 @@ export default {
             type: Boolean,
             default:true,
         },
-        callbacks:{
-            type:Function,
+        cancelText: {
+            type: String,
+            default:"删除",
+        },
+        okText: {
+            type: String,
+            default:"取消",
+        },
+        ok: {
+            type: Function,
+            default:()=>{},
+        },
+        cancel: {
+            type: Function,
+            default:()=>{},
         },
     },
     methods:{
         back:function(){
             this.show = false;
+        },
+        _ok:function(){
+            this.ok();
+            this.show = false;
+        },
+        _cancel:function(){
+            this.cancel();
+        }
+    },
+    watch:{
+        show: function(){
+            let y = window.pageYOffset; 
+            if(this.show == false) {
+                let y = document.body.style.top.replace(/px/ig,"");
+                document.body.removeAttribute("style");
+                window.scrollTo(0,-y);
+            }else {
+                document.body.style.top = - y + "px";
+                document.body.style.position = "fixed";
+                document.body.style.width = "100%";
+            }
         }
     }
+
 }
 </script>
 <style lang="less">

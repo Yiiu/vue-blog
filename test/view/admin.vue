@@ -1,5 +1,5 @@
 <template>
-    <router-view transition="op" v-if="loading"></router-view>
+    <router-view v-if="loading"></router-view>
 </template>
 <script>
 import { go } from '../store/actions';

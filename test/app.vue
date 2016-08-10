@@ -1,7 +1,6 @@
 <template>
     <div class="main">
         <headers></headers>
-        ddd{{ go }}
         <div class="content">
         	<router-view></router-view>
         </div>

@@ -1,6 +1,5 @@
 <template>
     <div class="col-5-c index animated" v-if="loading" transition="op">
-        <button @click="alerts"></button>
         <article v-for="article in datas">
             <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
             <p  class="center">
@@ -18,7 +17,6 @@
                 --加。。载--
             </a>
         </p>
-        <alert :show.sync="alert"></alert>
     </div>
 </template>
 <style lang="less">

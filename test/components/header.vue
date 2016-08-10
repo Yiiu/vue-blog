@@ -45,6 +45,8 @@ export default {
 }
 </script>
 <style lang="less">
+@fontSize: 30px;
+@height: 70px;
 /* 必需 */
 .navt-transition {
   transition: all .6s cubic-bezier(0, 0, 0.2, 1);
@@ -66,8 +68,8 @@ export default {
 header {
     position: relative;
     top: 0;
-    height: 70px;
-    line-height: 70px;
+    height: @height;
+    line-height: @height;
     border-bottom: 1px solid #eee;
     box-sizing: border-box;
     padding: 0 30px;
@@ -91,8 +93,9 @@ header {
         left: 30px;
         ul {
             border: 1px solid #eee;
+            border-top: 0;
+            margin: 0;
             margin-left: -30px;
-            margin-top: -1px;
             padding: 20px 40px;
             list-style-type: none;
             background: #fff;
@@ -101,39 +104,40 @@ header {
             }
         }
         .title {
-            height: 70px;
-            line-height: 70px;
+            height: @height;
+            line-height: @height;
             i {
-                font-size: 42px;
+                font-size: @fontSize;
             }
         }
     }
     .query {
-        height: 70px;
-        line-height: 70px;
+        height: @height;
+        line-height: @height;
         position: absolute;
         top: 0;
         right: 30px;
         .i {
             i{
-                font-size: 42px;
+                font-size: @fontSize;
             }
             
         }
         .title {
-            line-height: 70px;
+            line-height: @height;
             i {
-                font-size: 42px;
+                font-size: @fontSize;
             }
         }
 
     }
     .logo {
         text-align: center;
+        height: @height;
         a{
             color: #6e8eae;
             transition: 0.3s all;
-            font-size: 48px;
+            font-size: @fontSize + 6;
             font-family: "Muli";
             text-shadow: 0 0 2px #dcdcdc;
             &:hover {

@@ -1,5 +1,5 @@
 <template>
-    <div class="admin col-6-c" v-if="loading">
+    <div class="admin col-6-c" v-if="loading" transition="op">
         <div class="btns clearfix">
             <a v-link="{ name:'index' }" class="btn btn-blue" style="font-size: 16px;float: left;">返回首页</a>
             <a v-link="{ name:'add' }" class="btn btn-blue" style="font-size: 16px;float: right;">发布新文章</a>
@@ -10,7 +10,7 @@
                     @click="checkedAll" 
                     v-model="checkedalls"
                 >
-                <div class="title col-6">
+                <div class="title col-6-n">
                     标题
                 </div>
                 <div class="time" style="text-align: center;">时间
@@ -25,7 +25,7 @@
                 <input type="checkbox" class="y" name="{{datas._id}}" id="{{datas._id}}" value="{{datas._id}}" 
                     v-model="checkedData"
                 >
-                <div class="title col-6">
+                <div class="title col-6-n">
                     <a v-link="{ name:'admin-article',params : {id : datas._id}}">{{datas.title}}</a>
                 </div>
                 <div class="time">
@@ -34,14 +34,115 @@
                 </div>
                 <div class="dels" style="text-align: center;">
                     <button class="btn btn-del" 
-                        @click="del(datas._id)"
+                        @click="alertDel(datas._id)"
                     >删除</button>
                 </div>
             </li>
         </ul>
-
+        <alert :show.sync="alert" :title="'确定要删除嘛？'" :cancel="del"></alert>
     </div>
 </template>
+<script>
+import loading from "../components/loading"
+import alert from "../components/alert"
+import { alertshow, alerttitle, alertstyle } from '../store/actions';
+export default {
+    vuex:{
+        actions: {
+          alertshow,
+          alerttitle,
+          alertstyle
+        }
+    },
+    data(){
+        return{
+            data:{},
+            checkedData:[],
+            loading:false,
+            checkedalls:false,
+            alert:false,
+            callbacks:null,
+            id:null,
+        }
+    },
+    methods: {
+        alertDel:function(id){
+            this.id = id;
+            this.alert = true;
+        },
+        del:function() {
+            this.$http.post("/admin/del",{
+                id:this.id
+            }).then((response)=>{
+                if(response.data.op != "true"){
+                    this.alertshow(true)
+                    this.alertstyle("warn")
+                    this.alerttitle("删除失败！！")
+                }else {
+                    this.alertshow(true)
+                    this.alerttitle("删除成功！！")
+                    this.$http.post("/admin",{
+                        t:0
+                    }).then((response)=>{
+                        this.data = response.data;
+                        this.id="";
+                        this.alert = false;
+                    })
+                }
+            })
+        },
+        // 全选，全不选
+        checkedAll:function(){
+            var that = this;
+            if(that.checkedall) {
+                if(that.checkedData != ""){
+                    that.checkedData = [];
+                }
+                that.checkedall = false;
+            }else {
+                that.checkedData = [];
+                that.data.forEach(function(item){
+                    that.checkedData.push(item._id)
+                })
+                that.checkedall = true;
+            }
+        },
+        delAll:function(){
+            this.$http.post("/admin/del",{
+                id:this.checkedData
+            }).then((response)=>{
+                if(response.data.op != "true"){
+                    this.alertshow(true)
+                    this.alertstyle("warn")
+                    this.alerttitle("删除失败！！")
+                }else {
+                    this.alertshow(true)
+                    this.alerttitle("删除成功！！")
+                    this.$http.post("/admin",{
+                        t:0
+                    }).then((response)=>{
+                        this.data = response.data;
+                        this.id="";
+                        this.alert = false;
+                    })
+                }
+            })
+        }
+    },
+    init: function(){
+        this.$http.post("/admin",{
+            t:0
+        }).then((response)=>{
+            this.data = response.data;
+            this.loading = true;
+        })
+    },
+    components: {
+        loading,
+        alert
+    }
+}
+</script>
 <style lang="less">
 .admin {
     font-size: 26px;
@@ -87,67 +188,3 @@
     }
 }
 </style>
-<script>
-import loading from "../components/loading"
-export default {
-    data(){
-        return{
-            data:{},
-            checkedData:[],
-            loading:false,
-            checkedalls:false,
-        }
-    },
-    methods: {
-        del:function(id) {
-            this.$http.post("/admin/del",{
-                id:id
-            }).then((response)=>{
-                this.$http.post("/admin",{
-                    t:0
-                }).then((response)=>{
-                    this.data = response.data;
-                })
-            })
-        },
-        // 全选，全不选
-        checkedAll:function(){
-            var that = this;
-            if(that.checkedall) {
-                if(that.checkedData != ""){
-                    that.checkedData = [];
-                }
-                that.checkedall = false;
-            }else {
-                that.checkedData = [];
-                that.data.forEach(function(item){
-                    that.checkedData.push(item._id)
-                })
-                that.checkedall = true;
-            }
-        },
-        delAll:function(){
-            this.$http.post("/admin/del",{
-                id:this.checkedData
-            }).then((response)=>{
-                this.$http.post("/admin",{
-                    t:0
-                }).then((response)=>{
-                    this.data = response.data;
-                })
-            })
-        }
-    },
-    init: function(){
-        this.$http.post("/admin",{
-            t:0
-        }).then((response)=>{
-            this.data = response.data;
-            this.loading = true;
-        })
-    },
-    components: {
-        loading
-    }
-}
-</script>

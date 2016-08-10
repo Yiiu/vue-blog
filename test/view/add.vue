@@ -1,5 +1,5 @@
 <template>
-    <div class="col-6-c">
+    <div class="col-6-c" transition="op">
         <input type="text" class="y block" placeholder="标题" v-model="title">
         <div class="col-5 p-r-c" >
             <input type="text" class="y block" placeholder="栏目" v-model="type">
