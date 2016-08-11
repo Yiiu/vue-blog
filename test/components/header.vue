@@ -1,5 +1,5 @@
 <template>
-    <header>
+    <header　v-if="$route.matched[0].handler.name !='admin'" class="index">
         <nav>
             <div class="title"><i class="iconfont" @click="navs">&#xe607;</i></div>
             <ul v-show="nav" class="animated" transition="navt">
@@ -41,10 +41,14 @@ export default {
     },
     components:{
         query
+    },
+    init:function(){
+        console.log(this.$route)
     }
 }
 </script>
 <style lang="less">
+@import "../assets/styles/_var.less";
 @fontSize: 30px;
 @height: 70px;
 /* 必需 */
@@ -65,7 +69,7 @@ export default {
 .query-enter, .query-leave {
     opacity: 0;
 }
-header {
+header.index {
     position: relative;
     top: 0;
     height: @height;
@@ -77,7 +81,7 @@ header {
     position: fixed;
     width: 100%;
     background: rgba(255,255,255,.96);
-    color: #6e8eae;
+    color: @7;
     z-index: 999;
     i {
         cursor: pointer;
@@ -121,7 +125,7 @@ header {
             i{
                 font-size: @fontSize;
             }
-            
+
         }
         .title {
             line-height: @height;
@@ -138,7 +142,7 @@ header {
             color: ＠7;
             transition: 0.3s all;
             font-size: @fontSize + 6;
-            font-family: "Muli";
+            font-weight: 700;
             text-shadow: 0 0 2px #dcdcdc;
             &:hover {
                 text-shadow: 0 0 5px #dcdcdc;
