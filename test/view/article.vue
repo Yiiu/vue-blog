@@ -19,24 +19,24 @@
 </template>
 <script>
 import comment from "../components/comment"
-function GetScroll() {   
-  var x, y;   
-  if(window.pageYOffset) {   
-    // all except IE   
-    y = window.pageYOffset;   
-    x = window.pageXOffset;   
-  } else if(document.documentElement    
-    && document.documentElement.scrollTop) {   
-    // IE 6 Strict   
-    y = document.documentElement.scrollTop;   
-    x = document.documentElement.scrollLeft;   
-  } else if(document.body) {   
-    // all other IE   
-    y = document.body.scrollTop;   
-    x = document.body.scrollLeft;    
-  }   
-  return y  
-}  
+function GetScroll() {
+  var x, y;
+  if(window.pageYOffset) {
+    // all except IE
+    y = window.pageYOffset;
+    x = window.pageXOffset;
+  } else if(document.documentElement
+    && document.documentElement.scrollTop) {
+    // IE 6 Strict
+    y = document.documentElement.scrollTop;
+    x = document.documentElement.scrollLeft;
+  } else if(document.body) {
+    // all other IE
+    y = document.body.scrollTop;
+    x = document.body.scrollLeft;
+  }
+  return y
+}
 export default {
     data(){
         return {
@@ -89,7 +89,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import "../../dist/style/var.less";
+@import "../assets/styles/_var";
 .content{
     overflow-wrap: break-word;
 }

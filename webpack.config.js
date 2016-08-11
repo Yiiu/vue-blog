@@ -17,20 +17,15 @@ module.exports = {
             { test: /\.vue$/ , loader: "vue"},
             { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
             { test: /\.css$/, loader: 'style!css!autoprefixer'},
-            { test: /\.less$/, 
-              loader: ExtractTextPlugin.extract(
-                  // activate source maps via loader query
-                  'css?sourceMap!' +
-                  'less?sourceMap'
-              )
-            },
+            { test: /\.less$/,loader: "style!css!less"},
+            { test: /\.(eot|woff|svg|ttf)$/, loader: "file-loader" },
             { test: /\.(png|jpg)$/, loader: "url-loader?limit=8192"}
         ]
     },
   babel: {
     presets: ['es2015', 'stage-0'],
     plugins: ['transform-runtime']
-  }, 
+  },
     resolve: {
         extensions: ['', '.js', '.vue'],
     },
@@ -41,6 +36,5 @@ module.exports = {
           warnings: false
         }
       }),
-      new ExtractTextPlugin('styles.css')
     ]
 }

@@ -20,8 +20,8 @@
     </div>
 </template>
 <style lang="less">
-@import "../../dist/style/var.less";
-div.index{ 
+@import "../assets/styles/_var";
+div.index{
     article {
         margin-top: 46px;
         &:first-child{
@@ -44,7 +44,7 @@ div.index{
         >p {
             >span {
                 margin: 0 2px;
-                color: @fuOne;
+                color: @6;
             }
         }
         >span {

@@ -8,7 +8,8 @@
         <alertsmall></alertsmall>
     </div>
 </template>
-<style>
+<style lang="less">
+@import "./assets/styles/main";
 .content {
     margin-top: 120px;
 }

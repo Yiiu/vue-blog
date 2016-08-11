@@ -135,7 +135,7 @@ header {
         text-align: center;
         height: @height;
         a{
-            color: #6e8eae;
+            color: ＠7;
             transition: 0.3s all;
             font-size: @fontSize + 6;
             font-family: "Muli";
