@@ -1,16 +1,15 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var morgan = require('morgan');
-var router = require("./m/router");
-var session = require('express-session');
+let express = require('express');
+let app = express();
+let bodyParser = require('body-parser');
+let morgan = require('morgan');
+let router = require("./m/router");
+let session = require('express-session');
 
 
 app.use(session({
     secret: '12345',
     name: 'logss',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    secret: 'test', 
+    secret: 'test',
     resave: false,
     saveUninitialized: true,
     maxAge: 1000000*60*60 // default session expiration is set to 1 hour
@@ -29,7 +28,6 @@ app.all("*", function (req, res, next) {
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.static('dist'));
-app.use(cookieParser());
 
 
 router(app);

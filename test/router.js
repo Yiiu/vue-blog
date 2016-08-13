@@ -9,13 +9,13 @@ export default (app) => {
         "/":{
             name: "index",
             component:(resolve)=> {
-                require(["./view/index"],resolve)
+                require(["./view/index/index"],resolve)
             }
         },
         "/article/:id":{
             name: "article",
             component:(resolve)=> {
-                require(["./view/article"],resolve)
+                require(["./view/index/article"],resolve)
             }
         },
         "/login":{
@@ -33,25 +33,25 @@ export default (app) => {
         "/admin":{
             name: "admin",
             component:(resolve)=> {
-                require(["./view/admin"],resolve)
+                require(["./view/admin/admin"],resolve)
             },
             subRoutes:{
                 "/":{
                     name: "admin-index",
                     component:(resolve)=> {
-                        require(["./view/admin-index"],resolve)
+                        require(["./view/admin/index"],resolve)
                     }
                 },
                 "/:id":{
                     name: "admin-article",
                     component:(resolve)=> {
-                        require(["./view/admin-article"],resolve)
+                        require(["./view/admin/article"],resolve)
                     }
                 },
                 "/add":{
                     name: "add",
                     component:(resolve)=> {
-                        require(["./view/add"],resolve)
+                        require(["./view/admin/add"],resolve)
                     }
                 }
             }

@@ -14,17 +14,17 @@
 }
 body {
     overflow: hidden;
-    font-family: "微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
+    font-family: 'Open Sans',"微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
     margin: 0;
-    color: @7;
+    color: @9;
     overflow-y: scroll;
 }
 a {
-    color: @7;
+    color: @8;
     transition: all 0.3s ;
     text-decoration: none;
     &:hover {
-        color: @6;
+        color: @7;
     }
 }
 h1{
@@ -40,14 +40,15 @@ h4{
     font-size: @h4Size;
 }
 h1,h2,h3,h4,h5 {
-    color: @7;
+    color: @8;
     margin-top: 5px;
     margin-bottom: 10px;
     line-height: 1.4;
 }
 p{
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin-top: 19px;
+    margin-bottom: 19px;
+    line-height: 1.6;
 }
 input {
     font-family: "Muli","微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
@@ -255,6 +256,22 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     text-align: center;
     position: relative;
 }
+
+/* 必需 */
+.navt-transition {
+  transition: all .6s cubic-bezier(0, 0, 0.2, 1);
+}
+.navt-enter, .navt-leave {
+    transform: translate3d(-200px, 0, 0);
+    opacity: 0;
+}
+.query-transition {
+  transition: all .6s cubic-bezier(0, 0, 0.2, 1);
+}
+.query-enter, .query-leave {
+    opacity: 0;
+}
+
 /* 必需 */
 .op-transition {
       transition: all .7s ease;

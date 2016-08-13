@@ -1,5 +1,5 @@
 <template>
-    <div class="title">
+    <div class="search">
         <i class="iconfont" @click="out">&#xe60c;</i>
         <div class="container">
             <input type="text" class="y" v-model="inputs" @keyup.enter="query">
@@ -44,7 +44,7 @@ export default {
                     this.datas = response.data;
                     this.nono = false;
                 }
-                
+
             })
         },
         out:function(){
@@ -54,7 +54,7 @@ export default {
 }
 </script>
 <style lang="less">
-.query .title{
+.query .search{
     overflow-y: overlay;
     position: fixed;
     width: 100%;
