@@ -7,3 +7,6 @@ export const alerttitle = function({dispatch, state},title){
 export const alertstyle = function({dispatch, state},style){
     dispatch("ALERTSTYLE",style)
 }
+export const adminnav = function({dispatch, state},style){
+    dispatch("ADMINNAV")
+}

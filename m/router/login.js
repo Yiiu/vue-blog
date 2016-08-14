@@ -33,5 +33,10 @@ module.exports = {
         }else {
             res.jsonp({op:"false"})
         }
+    },
+    logon:function(req, res, next){
+        users.addUser(req.body, function(data){
+            res.jsonp({op:"true"})
+        })
     }
 }

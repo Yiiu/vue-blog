@@ -6,6 +6,7 @@ const state = {
     alerttitle:"",
     alertstyle:"",
     alerttime:1000,
+    adminnav:false,
 }
 const mutations  = {
     ALERTSHOW (state, amount){
@@ -19,6 +20,14 @@ const mutations  = {
     },
     ALERTTIME (state, amount){
         state.alerttime = amount;
+    },
+    // admin
+    ADMINNAV (state, amount) {
+        if(state.adminnav){
+            state.adminnav = false;
+        }else {
+            state.adminnav = true;
+        }
     }
 }
 export default new Vuex.Store({

@@ -17,6 +17,7 @@ function day(){
     if(Seconds <=9){
         Seconds = "0"+Seconds;
     }
+    me[0] = data.getFullYear()+"年"+month+"月"+data.getDate()+"日";
     me[0] = data.getFullYear()+"年"+month+"月"+data.getDay()+"日";
     me[1] = Hours+":"+Minutes+":"+Seconds
     return me

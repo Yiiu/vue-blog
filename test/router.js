@@ -24,6 +24,12 @@ export default (app) => {
                 require(["./view/login"],resolve)
             }
         },
+        "/logon":{
+            name: "logon",
+            component:(resolve)=> {
+                require(["./view/logon"],resolve)
+            }
+        },
         "/update":{
             name: "update",
             component:(resolve)=> {

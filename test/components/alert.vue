@@ -1,5 +1,5 @@
 <template>
-    <div class="alert" v-if="show" transition="tt"><slot></slot>
+    <div class="alert" v-if="show" transition="tt" @click.self="back"><slot></slot>
         <div class="container" v-if="show"  transition="alerts">
             <p class="title">{{title}}</p>
             <p class="button">
@@ -47,7 +47,7 @@ export default {
     },
     watch:{
         show: function(){
-            let y = window.pageYOffset; 
+            let y = window.pageYOffset;
             if(this.show == false) {
                 let y = document.body.style.top.replace(/px/ig,"");
                 document.body.removeAttribute("style");

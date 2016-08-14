@@ -1,7 +1,10 @@
 <template>
-    <div class="admin" v-if="loading" transition="op">
+    <div class="admin col-6-c" v-if="loading" transition="op">
+        <div class="btns clearfix">
+            <a v-link="{ name:'index' }" class="btn btn-blue" style="font-size: 16px;float: left;">返回首页</a>
+            <a v-link="{ name:'add' }" class="btn btn-blue" style="font-size: 16px;float: right;">发布新文章</a>
+        </div>
         <ul>
-            <!--
             <li class="clearfix">
                 <input type="checkbox" class="y"
                     @click="checkedAll"
@@ -16,26 +19,22 @@
                     <button class="btn btn-del" @click="delAll">删除</button>
                 </div>
             </li>
-            -->
-            <li class="clearfix" v-for="datas in data">
-                <div class="container">
-                    <div class="title">
-                        <a v-link="{ name:'admin-article',params : {id : datas._id}}">{{datas.title}}</a>
-                    </div>
-                    <div class="time">
-                        <span>{{datas.time[0]}}</span>
-                    </div>
-                    <div class="admin">
-                        <span>{{datas.author}}</span>
-                    </div>
-                    <div class="dels" style="text-align: center;" @click="alertDel(datas._id)">
-                        <i class="iconfont">&#xe615;</i>
-                    </div>
-                    <div class="input">
-                        <input type="checkbox" class="y" name="{{datas._id}}" id="{{datas._id}}" value="{{datas._id}}"
-                            v-model="checkedData"
-                        >
-                    </div>
+            <li class="clearfix"
+                v-for="datas in data"
+            >
+                <input type="checkbox" class="y" name="{{datas._id}}" id="{{datas._id}}" value="{{datas._id}}"
+                    v-model="checkedData"
+                >
+                <div class="title col-6-n">
+                    <a v-link="{ name:'admin-article',params : {id : datas._id}}">{{datas.title}}</a>
+                </div>
+                <div class="time">
+                    <p>{{datas.time[0]}}</p>
+                </div>
+                <div class="dels" style="text-align: center;">
+                    <button class="btn btn-del"
+                        @click="alertDel(datas._id)"
+                    >删除</button>
                 </div>
             </li>
         </ul>
@@ -45,17 +44,13 @@
 <script>
 import loading from "../../components/loading"
 import alert from "../../components/alert"
-import { alertshow, alerttitle, alertstyle, adminnav } from '../../store/actions';
+import { alertshow, alerttitle, alertstyle } from '../../store/actions';
 export default {
     vuex:{
         actions: {
           alertshow,
           alerttitle,
-          alertstyle,
-          adminnav
-        },
-        getters:{
-            nav:state => state.adminnav
+          alertstyle
         }
     },
     data(){
@@ -67,7 +62,6 @@ export default {
             alert:false,
             callbacks:null,
             id:null,
-            mouse:false,
         }
     },
     methods: {
@@ -149,73 +143,43 @@ export default {
 }
 </script>
 <style lang="less">
-div.admin {
-    width: 100%;
-    box-sizing: border-box;
+.admin {
     .btns {
         border-bottom: 1px #ccc solid;
         padding-bottom: 15px;
     }
     ul{
-        margin: 0;
-        padding: 0;
         list-style-type: none;
         padding: 0;
         li {
-            position: relative;
-            width: 25%;
-            float: left;
-            height: 180px;
-            padding: 8px;
-            box-sizing: border-box;
-            div.container {
-                transition: 0.3s all;
-                height: 100%;
-                background: #f8f8f8;
-                padding: 0 15px;
-                &:hover {
-                    box-shadow: 0 1px 5px -1px #ccc;
-                }
-                a{
-                    color: #5c9ed8;
-                }
-                input.y {
-                    float: left;
-                }
-                .title {
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    height: 100px;
-                    line-height: 100px;
-                    font-size: 20px;
+            border-bottom: 1px solid #dcdcdc;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            a{
+                color: #5c9ed8;
+            }
+            input.y {
+                float: left;
+            }
+            .title {
+                padding-left: 10px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .dels {
+                text-align: center;
+                float: right;
+                margin-right: 4px;
+            }
+            .time {
+                float: left;
+                width: 120px;
+                p{
+                    font-size: 16px;
                     text-align: center;
-                }
-                .dels {
-                    position: absolute;
-                    right: 18px;
-                    bottom: 25px;
-                    color: #ff6c6c;
-                    cursor: pointer;
-                    :hover {
-                        color: lighten(#ff6c6c,10%);
-                    }
-                    i {
-                        font-size: 34px;
-                    }
-                }
-                .time {
-                    span{
-                        font-size: 16px;
-                        text-align: center;
-                        padding: 0;
-                        margin: 0;
-                    }
-                }
-                .input {
-                    position: absolute;
-                    top: 18px;
-                    right: 21px;
+                    padding: 0;
+                    margin: 0;
                 }
             }
         }

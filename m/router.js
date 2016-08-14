@@ -10,6 +10,7 @@ module.exports = (app) => {
 	};
     // 登录
     app.post("/login",routers.log.login)
+    app.post("/logon", routers.log.logon)
     // 登陆状态检测
     app.post("/log",routers.log.state)
 

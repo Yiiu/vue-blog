@@ -51,7 +51,7 @@ article.findSArticle = function(s, l, callback){
 }
 // 查找多个文章，只返回title
 article.findAArticle = function(s, l, callback){
-    article.find({}, {"title":1,"time":1}, {skip: s, limit: l}, function(err, data){
+    article.find({}, {"title":1,"time":1,"author":1}, {skip: s, limit: l}, function(err, data){
         if (err) {
             return callback("err");
         }else {
