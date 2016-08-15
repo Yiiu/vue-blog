@@ -47,7 +47,7 @@ article.findSArticle = function(s, l, callback){
         }else {
             return callback(data);
         }
-    });
+    }).sort({"_id":-1});
 }
 // 查找多个文章，只返回title
 article.findAArticle = function(s, l, callback){
@@ -57,7 +57,7 @@ article.findAArticle = function(s, l, callback){
         }else {
             return callback(data);
         }
-    });
+    }).sort({"_id":-1});
 }
 // 更新文章
 article.upArticle = function(id, datas,callback){

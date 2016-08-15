@@ -3,6 +3,55 @@ let article = require("../../db/article");
 let hljs = require('highlight.js');
 let marked = require('marked');
 
+var md = require('markdown-it')({
+  html:         false,        // Enable HTML tags in source
+  xhtmlOut:     false,        // Use '/' to close single tags (<br />).
+                              // This is only for full CommonMark compatibility.
+  breaks:       false,        // Convert '\n' in paragraphs into <br>
+  langPrefix:   'language-',  // CSS language prefix for fenced blocks. Can be
+                              // useful for external highlighters.
+  linkify:      false,        // Autoconvert URL-like text to links
+
+  // Enable some language-neutral replacement + quotes beautification
+  typographer:  false,
+
+  // Double + single quotes replacement pairs, when typographer enabled,
+  // and smartquotes on. Could be either a String or an Array.
+  //
+  // For example, you can use '«»„“' for Russian, '„“‚‘' for German,
+  // and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
+  quotes: '“”‘’',
+
+  // Highlighter function. Should return escaped HTML,
+  // or '' if the source string is not changed and should be escaped externaly.
+  // If result starts with <pre... internal wrapper is skipped.
+  highlight: function (code) {
+      return hljs.highlightAuto(code).value;
+  }
+});
+var emoji = require('markdown-it-emoji');
+// Or for light version
+// var emoji = require('markdown-it-emoji/light');
+
+md.use(emoji);
+
+var twemoji = require('twemoji')
+
+md.render.heading = function (text, level){
+  var escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+
+  return '<h' + level + '><a name="' +
+                escapedText +
+                 '" class="anchor" href="#' +
+                 escapedText +
+                 '"><span class="header-link"></span></a>' +
+                  text + '</h' + level + '>';
+}
+
+md.renderer.rules.emoji = function(token, idx) {
+  // return "<span class='emoji'>"+twemoji.parse(token[idx].content)+"</span>";
+  return twemoji.parse(token[idx].content);
+};
 
 // 截断 去除html标签
 String.prototype.trims = function(lengths){
@@ -68,7 +117,7 @@ module.exports = {
                 res.jsonp({op:"false"})
             }else {
                 article.upvistits(req.body.id, function(data){});
-                data.content = marked(data.content);
+                data.content = md.render(data.content);
                 res.jsonp(data);
             }
         });
