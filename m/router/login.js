@@ -1,10 +1,9 @@
-let users = require("../../db/users");
+let users = require("../../db/controllers/users");
 let md5 = require("md5");
-
 module.exports = {
     // 登录
     login:function(req, res, next){
-        users.findUser(req.body.name, function( data ){
+        users.find(req.body.name, function( data ){
             if(data){
                 if(data.name == req.body.name && data.password == md5(req.body.password)){
                     req.session.name = req.body.name;
@@ -35,7 +34,7 @@ module.exports = {
         }
     },
     logon:function(req, res, next){
-        users.addUser(req.body, function(data){
+        users.add(req.body, function(data){
             res.jsonp({op:"true"})
         })
     }
