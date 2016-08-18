@@ -59,6 +59,12 @@ export default (app) => {
                     component:(resolve)=> {
                         require(["./view/admin/add"],resolve)
                     }
+                },
+                "/addtype":{
+                    name: "addtype",
+                    component:(resolve)=> {
+                        require(["./view/admin/addtype"],resolve)
+                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 let mongoose = require("mongoose");
-let users = mongoose.model("login");
+let users = require("../models/users")
 
-users.find = function(userName, callback){
+users.finds = function(userName, callback){
     users.findOne({name:userName}, function(err, data){
         if (err) {
             return callback("err");

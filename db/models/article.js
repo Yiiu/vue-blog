@@ -1,5 +1,6 @@
-var mongoose = require("./db");
+var mongoose = require("../db");
 var Schema = mongoose.Schema;
+let ObjectId = Schema.Types.ObjectId
 
 var articleSchema = new Schema ({
     title: String,
@@ -8,14 +9,20 @@ var articleSchema = new Schema ({
         type: Number,
         default: 0
     },
-    type:{
-        type: Array,
+    type:[{
+        type: ObjectId,
         ref:"type"
+    }],
+    tags:[{
+        type: ObjectId,
+        ref:"tag"
+    }],
+    create_time:{
+        type: Array,
     },
-    tags:{
-        type: Array
+    update_time:{
+        type: Array,
     },
-    time: Array,
     indexImg: {
         type:String,
         default: ""

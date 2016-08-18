@@ -1,21 +1,40 @@
 <template>
     <div transition="op">
-        <input type="text" class="y block" placeholder="标题" v-model="title">
+        <input type="text" class="y block" placeholder="标题" v-model="data.title">
         <div class="col-5 p-r-c" >
-            <input type="text" class="y block" placeholder="栏目" v-model="type">
+        <select class="types" v-model="data.type">
+            <option value="">未分类</option>
+            <option value="{{data._id}}" v-for="data in type">{{ data.name }}</option>
+        </select>
         </div>
         <div class="col-5 p-l-c">
-            <tag :tags.sync="tags"></tag>
+            <tag :tags.sync="data.tags"></tag>
         </div>
-        <textarea name="" class="y block" cols="30" rows="10" v-model="content"></textarea>
+        <textarea name="" class="y block" cols="30" rows="10" v-model="data.content"></textarea>
         <button class="btn btn-default block" @click="create">on</button>
     </div>
 </template>
+<style lang="less">
+select.types {
+    width: 100%;
+    height: 58px;
+    background: #fff;
+    border: 2px #d2d2d2 solid;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+</style>
 <script>
 import tag from "../../components/tag";
 export default {
     data(){
         return {
+            data:{
+                title:"",
+                content:"",
+                tags:[],
+                type:"",
+            },
             tags:[],
             title:"",
             content:"",
@@ -24,12 +43,7 @@ export default {
     },
     methods:{
         create: function(){
-            this.$http.post("/admin/add",{
-                tags:this.tags,
-                title:this.title,
-                content:this.content,
-                type:this.type,
-            }).then((response)=>{
+            this.$http.post("/admin/add",this.data).then((response)=>{
                 window.location.href = "#/admin";
             })
         }
@@ -37,5 +51,10 @@ export default {
     components: {
         tag
     },
+    ready:function(){
+        this.$http.post("/types").then((response) =>{
+            this.type = response.data;
+        })
+    }
 }
 </script>

@@ -1,6 +1,3 @@
-let users = require("../db/users");
-let article = require("../db/article");
-
 module.exports = (app) => {
 	//路由模块
 	const routers = {
@@ -28,4 +25,7 @@ module.exports = (app) => {
     app.post("/admin/id", routers.admin.edit)
     app.post("/admin/update", routers.admin.update)
     app.post("/admin/del", routers.admin.del)
+    app.post("/admin/addtype", routers.admin.addtype)
+
+    app.post("/types", routers.admin.types)
 }

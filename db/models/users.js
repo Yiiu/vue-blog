@@ -1,4 +1,4 @@
-var mongoose = require("./db.js");
+var mongoose = require("../db.js");
 var Schema = mongoose.Schema;
 var userSchema = new Schema({
     name: {             // 登录名
@@ -22,3 +22,4 @@ var userSchema = new Schema({
     },
 })
 var users = mongoose.model("login", userSchema);
+module.exports = users;

@@ -4,7 +4,7 @@
             <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
             <p  class="center">
                 <span><i class="iconfont">&#xe620;</i>{{ article.author }}</span>
-                <span><i class="iconfont">&#xe600;</i>{{ article.time[0] }}</span>
+                <span><i class="iconfont">&#xe616;</i>{{ article.update_time[0] }}</span>
                 <span><i class="iconfont">&#xe62e;</i>{{ article.vistits }}</span>
             </p>
             <img v-if="article.indexImg" :src="article.indexImg" alt="">

@@ -3,7 +3,7 @@ let md5 = require("md5");
 module.exports = {
     // 登录
     login:function(req, res, next){
-        users.find(req.body.name, function( data ){
+        users.finds(req.body.name, function( data ){
             if(data){
                 if(data.name == req.body.name && data.password == md5(req.body.password)){
                     req.session.name = req.body.name;

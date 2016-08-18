@@ -1,9 +1,15 @@
 let mongoose = require('mongoose');
-let article = mongoose.model("article");
+let article = require("../models/article")
 
 // 添加文章
-article.add = function(data){
-    article.create(data);
+article.add = function(data, callback){
+    article.create(data, function(err, data){
+        if (err) {
+            return callback("err");
+        }else {
+            return callback(data);
+        }
+    })
 }
 // 查找一个文章
 article.findO = function(id, callback){
@@ -17,7 +23,7 @@ article.findO = function(id, callback){
 }
 // 查找多个文章，只返回title,content
 article.findS= function(s, l, callback){
-    article.find({}, {"title":1,"content":1,"time":1,"author":1,"vistits":1}, {skip: s, limit: l}, function(err, data){
+    article.find({}, {"title":1,"content":1,"update_time":1,"author":1,"vistits":1}, {skip: s, limit: l}, function(err, data){
         if (err) {
             return callback("err");
         }else {

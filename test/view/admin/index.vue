@@ -23,7 +23,7 @@
                         <a v-link="{ name:'admin-article',params : {id : datas._id}}">{{datas.title}}</a>
                     </div>
                     <div class="time">
-                        <span>{{datas.time[0]}}</span>
+                        <span>{{datas.update_time[0]}}</span>
                     </div>
                     <div class="admin">
                         <span>{{datas.author}}</span>

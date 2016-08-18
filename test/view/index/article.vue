@@ -4,7 +4,7 @@
             <h1 class="title">{{data.title}}</h1>
             <p class="center">
                 <span><i class="iconfont">&#xe620;</i>{{data.author}}</span>
-                <span><i class="iconfont">&#xe600;</i>{{data.time[0]}}</span>
+                <span><i class="iconfont">&#xe600;</i>{{data.update_time[0]}}</span>
                 <span><i class="iconfont">&#xe62e;</i>{{data.vistits}}</span>
             </p>
             <p style="display: none;">
