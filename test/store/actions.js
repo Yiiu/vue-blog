@@ -10,3 +10,6 @@ export const alertstyle = function({dispatch, state},style){
 export const adminnav = function({dispatch, state},style){
     dispatch("ADMINNAV")
 }
+export const loadingin = function({dispatch, state},m){
+    dispatch("LOADING", m)
+}

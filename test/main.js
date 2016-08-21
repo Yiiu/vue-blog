@@ -13,10 +13,7 @@ Vue.use( Router );
 Vue.use( Resource );
 var router = new Router({hashbang: false});
 
-
 Vue.directive('on').keyCodes.dou = 188;
-
-
 
 map(router);
 router.start(App, ".app")

@@ -7,7 +7,7 @@
                 <a href="#"><i class="iconfont">&#xe610;</i><span>文章</span></a>
             </li>
             <li>
-                <a v-link="{ path: 'addtype' }"><i class="iconfont">&#xe623;</i><span>分类</span></a>
+                <a v-link="{ path: '/admin/addtype' }"><i class="iconfont">&#xe623;</i><span>分类</span></a>
             </li>
             <li>
                 <a href="#"><i class="iconfont">&#xe637;</i><span>标签</span></a>

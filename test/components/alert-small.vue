@@ -11,7 +11,6 @@
 </template>
 <script>
 import { alertshow, alerttitle, alertstyle } from '../store/actions' ;
-import { getAlertshow,getAlertTitle,getAlertStyle,getAlertTime } from '../store/getters' ;
 
 export default {
     vuex:{

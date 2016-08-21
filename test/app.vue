@@ -15,6 +15,7 @@
 }
 </style>
 <script>
+import loading from "./components/loading";
 import alertsmall from "./components/alert-small";
 import store from './store/store' ;
 import { getAlertshow } from './store/getters' ;

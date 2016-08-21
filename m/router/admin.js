@@ -1,13 +1,13 @@
-let article = require("../../db/controllers/article");
-let type = require("../../db/controllers/type");
+const article = require("../../db/controllers/article");
+const type = require("../../db/controllers/type");
 // 格式化日期
 function day(){
-    var data = new Date();
-    var me = [];
-    var month = data.getMonth()+1;
-    var Minutes = data.getMinutes().toString();
-    var Hours = data.getHours().toString();
-    var Seconds = data.getSeconds().toString();
+    let data = new Date();
+    let me = [];
+    let month = data.getMonth()+1;
+    let Minutes = data.getMinutes().toString();
+    let Hours = data.getHours().toString();
+    let Seconds = data.getSeconds().toString();
     if(Minutes <=9){
         Minutes = "0"+Minutes;
     }
@@ -23,30 +23,43 @@ function day(){
     return me
 }
 module.exports = {
-    articleAdd: function(req, res, next){
+    articleAdd: (req, res, next) => {
         if(req.session.sign == "true"){
             var articles = {
                 title: req.body.title,
                 author: req.session.name,
-                type: req.body.type,
                 tags: req.body.tags,
                 enabled: true,
                 content: req.body.content,
                 update_time:day(),
                 create_time:day()
             }
-            article.add(articles, function(data){
-                if(data = "err"){
+            if(req.body.type != ""){
+                articles.type = req.body.type
+            }
+            article.add(articles, (data) => {
+                if(data == "err"){
                     res.jsonp({op:"false"});
                 }else {
-                    res.jsonp({op:"true"});
+                    if(req.body.type != ""){
+                        // 把这篇文章添加到type的acritle里去
+                        type.addid(req.body.type, data._id, (data) => {
+                            if(data == "err"){
+                                res.jsonp({op:"false"});
+                            }else {
+                                res.jsonp({op:"true"});
+                            }
+                        })
+                    }else {
+                        res.jsonp({op:"true"});
+                    }
                 }
             });
         }
     },
-    index: function(req, res, next){
+    index: (req, res, next) => {
         if(req.session.sign == "true"){
-            article.findS(0,10,function(data){
+            article.findS(0,10,(data) => {
                 res.jsonp(data);
             });
         }else {
@@ -54,54 +67,70 @@ module.exports = {
         }
     },
     // 获取文章
-    edit: function(req, res, next){
-        if(req.session.sign == "true"){
-            article.findO(req.body.id,function(data){
-                res.jsonp(data);
-            });
-        }else {
-            res.jsonp({op:"false"});
-        }
+    edit: (req, res, next) => {
+        article.findO(req.body.id,(data) => {
+            res.jsonp(data);
+        });
     },
-    update: function(req, res, next){
+    update: (req, res, next) => {
         if(req.session.sign == "true"){
-            article.up(req.body.id,req.body.data,function(data){
-                res.jsonp({op:"true"})
-            });
-        }else {
-            res.jsonp({op:"false"});
-        }
-    },
-    del:function(req, res, next){
-        if(req.session.sign == "true"){
-            if(toString.apply(req.body.id) == "[object Array]"){
-                req.body.id.forEach(function(item){
-                    article.del(item,function(data){
+            article.up(req.body.id,req.body.data,(data) => {
+                type.addid(req.body.data.type, req.body.id, (types) => {
+                    type.delid(req.body.oldtype, req.body.id, (types) => {
+                        res.jsonp({op:"true"})
                     })
                 })
-                res.jsonp({op:"true"})
+            });
+        }else {
+            res.jsonp({op:"false"});
+        }
+    },
+    del:(req, res, next) => {
+        if(req.session.sign == "true"){
+            if(toString.apply(req.body.id) == "[object Array]"){
+                req.body.id.forEach((item) => {
+                    article.findO(item, (data) => {
+                        if(data != "err"){
+                            article.del(data._id,(del) => {
+                                if(data != "err"){
+                                    type.delid(data.type,data._id, () => {
+                                        res.jsonp({op:"true"})
+                                    })
+                                }
+                            });
+                        }
+                    })
+                })
             }else {
-                article.del(req.body.id,function(data){
-                    res.jsonp({op:"true"})
-                });
+                article.findO(req.body.id, (data) => {
+                    if(data != "err"){
+                        article.del(data._id,(del) => {
+                            if(data != "err"){
+                                type.delid(data.type,data._id, () => {
+                                    res.jsonp({op:"true"})
+                                })
+                            }
+                        });
+                    }
+                })
             }
         }else {
             res.jsonp({op:"false"});
         }
     },
-    addtype: function(req, res, next){
+    addtype: (req, res, next) => {
         if(req.session.sign == "true"){
-            type.add(req.body, function(data){ 
+            type.add(req.body, (data) => { 
                 res.jsonp(data)
             })
         }else {
             res.jsonp({op:"false"});
         }
     },
-    types: function(req, res, next){
-        type.finds(function(data){
+    types: (req, res, next) => {
+        type.finds((data) => {
             res.jsonp(data);
         })
-    } 
+    } ,
 
 }

@@ -9,10 +9,10 @@ var articleSchema = new Schema ({
         type: Number,
         default: 0
     },
-    type:[{
+    type:{
         type: ObjectId,
         ref:"type"
-    }],
+    },
     tags:[{
         type: ObjectId,
         ref:"tag"

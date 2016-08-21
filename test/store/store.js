@@ -2,13 +2,17 @@ import Vuex from 'vuex'
 import Vue from "vue";
 Vue.use(Vuex)
 const state = {
+    // alert
     alertshow:false,
     alerttitle:"",
     alertstyle:"",
     alerttime:1000,
     adminnav:false,
+    // loading
+    loading:false
 }
 const mutations  = {
+    // alert
     ALERTSHOW (state, amount){
         state.alertshow = amount;
     },
@@ -28,6 +32,10 @@ const mutations  = {
         }else {
             state.adminnav = true;
         }
+    },
+    // loading
+    LOADING (state, amount) {
+        state.loading = amount;
     }
 }
 export default new Vuex.Store({

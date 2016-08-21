@@ -1,5 +1,5 @@
 <template>
-    <div class="login col-4-c" transition="op" v-if="loading">
+    <div class="login col-4-c" transition="op" transition-mode="out-in" v-if="loading">
         <label>
             <input type="text" id="name" class="y block" placeholder="帐号：" autocomplete="new-password"  v-el:name>
         </label>

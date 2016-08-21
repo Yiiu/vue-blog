@@ -1,11 +1,11 @@
 <template>
-    <div transition="op">
+    <div transition="op" transition-mode="out-in">
         <input type="text" class="y block" placeholder="标题" v-model="data.title">
         <div class="col-5 p-r-c" >
-        <select class="types" v-model="data.type">
-            <option value="">未分类</option>
-            <option value="{{data._id}}" v-for="data in type">{{ data.name }}</option>
-        </select>
+            <select class="types" v-model="data.type">
+                <option value="">未分类</option>
+                <option value="{{data._id}}" v-for="data in type">{{ data.name }}</option>
+            </select>
         </div>
         <div class="col-5 p-l-c">
             <tag :tags.sync="data.tags"></tag>
@@ -36,14 +36,13 @@ export default {
                 type:"",
             },
             tags:[],
-            title:"",
-            content:"",
-            type:"",
+            type:[]
         }
     },
     methods:{
         create: function(){
             this.$http.post("/admin/add",this.data).then((response)=>{
+                console.log(response.data)
                 window.location.href = "#/admin";
             })
         }
@@ -51,7 +50,7 @@ export default {
     components: {
         tag
     },
-    ready:function(){
+    init:function(){
         this.$http.post("/types").then((response) =>{
             this.type = response.data;
         })

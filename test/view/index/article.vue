@@ -59,6 +59,8 @@ export default {
         }
     },
     init: function(){
+    },
+    ready:function(){
         let ids = this.$route.matched[0].params.id;
         this.$http.post("/article",{
             id:ids
@@ -75,8 +77,6 @@ export default {
                 window.scrollTo(0,y-20);
             }
         },5)
-    },
-    ready:function(){
         let that = this;
         setTimeout(function(){
             that.duoshuo()

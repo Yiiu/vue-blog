@@ -1,9 +1,9 @@
-let mongoose = require('mongoose');
-let article = require("../models/article")
+const mongoose = require('mongoose');
+const article = require("../models/article")
 
 // 添加文章
-article.add = function(data, callback){
-    article.create(data, function(err, data){
+article.add = (data, callback) => {
+    article.create(data, (err, data) => {
         if (err) {
             return callback("err");
         }else {
@@ -12,8 +12,8 @@ article.add = function(data, callback){
     })
 }
 // 查找一个文章
-article.findO = function(id, callback){
-    article.findOne({_id:id}, function(err, data){
+article.findO = (id, callback) => {
+    article.findOne({_id:id}, (err, data) => {
         if (err) {
             return callback("err");
         }else {
@@ -22,8 +22,8 @@ article.findO = function(id, callback){
     });
 }
 // 查找多个文章，只返回title,content
-article.findS= function(s, l, callback){
-    article.find({}, {"title":1,"content":1,"update_time":1,"author":1,"vistits":1}, {skip: s, limit: l}, function(err, data){
+article.findS= (s, l, callback) => {
+    article.find({}, {"title":1,"content":1,"update_time":1,"author":1,"vistits":1}, {skip: s, limit: l}, (err, data) => {
         if (err) {
             return callback("err");
         }else {
@@ -32,8 +32,8 @@ article.findS= function(s, l, callback){
     }).sort({"_id":-1});
 }
 // 更新文章
-article.up = function(id, datas,callback){
-    article.update({"_id":id},datas, function(err, data){
+article.up = (id, datas,callback) => {
+    article.update({"_id":id},datas, (err, data) => {
         if (err) {
             return callback("err");
         }else {
@@ -42,8 +42,8 @@ article.up = function(id, datas,callback){
     });
 }
 // 删除文章
-article.del = function(id, callback){
-    article.remove({"_id":id},function(err, data){
+article.del = (id, callback)  => {
+    article.remove({"_id":id},(err, data) => {
         if (err) {
             return callback("err");
         }else {
@@ -52,8 +52,8 @@ article.del = function(id, callback){
     });
 }
 // 增加阅读量
-article.vistits = function(id, callback){
-    article.update({"_id":id},{$inc:{"vistits":1}},function(err, data){
+article.vistits = (id, callback) => {
+    article.update({"_id":id},{$inc:{"vistits":1}},(err, data) => {
         if (err) {
             return callback("err");
         }else {
@@ -62,7 +62,7 @@ article.vistits = function(id, callback){
     })
 }
 // 查询
-article.search = function(title, cc, callback){
+article.search = (title, cc, callback) => {
     article.find({title:cc}, {"title":1,"content":1,"time":1,"author":1,"vistits":1}, function(err, data){
         if (err) {
             return callback("err");

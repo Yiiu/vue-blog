@@ -1,6 +1,6 @@
 <template>
-    <div class="admin" v-if="loading" transition="op">
-        <ul>
+    <div class="admin" v-if="loading" transition="op" transition-mode="out-in">
+        <ul class="clearfix">
             <!--
             <li class="clearfix">
                 <input type="checkbox" class="y"

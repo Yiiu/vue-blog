@@ -17,6 +17,8 @@
                 --加。。载--
             </a>
         </p>
+        <button @click="loadings"></button>
+        <loading v-ref:loading></loading>
     </div>
 </template>
 <style lang="less">
@@ -63,36 +65,35 @@ div.index{
 </style>
 <script>
 import alert from "../../components/alert";
-import { alertshow } from '../../store/actions'
+import loading from "../../components/loading";
+import { alertshow, loadingin } from '../../store/actions';
 export default {
-    vuex: {
-        actions: {
-          alertshow
-        }
-    },
     data(){
         return{
             datas:{},
-            loading:false,
             nulls:false,
             page: 0,
             querys:"",
             alertsmall:false,
-            alert:false
+            alert:false,
+            loading:false,
         }
     },
     methods:{
+        loadings:function(){
+            this.$refs.loading.loading = true;
+        }
+        ,
         next:function(){
             var that =this;
             this.page++;
-            console.log(this.page)
             this.$http.post("/index",{
                 t:this.page
             }).then((response)=>{
                 response.data.forEach(function(item){
                     that.datas.push(item);
                 })
-                this.loading = true;
+                this.loadingin(true)
                 if(response.data == ""){
                     this.nulls = true
                 }
@@ -112,19 +113,20 @@ export default {
             this.alert = true;
         }
     },
-    init: function(){
+    ready: function(){
         this.$http.post("/index",{
             t:0
         }).then((response)=>{
             this.datas = response.data;
-            this.loading = true;
+            this.loading = true
             if(response.data == ""){
                 this.nulls = true
             }
         })
     },
     components:{
-        alert
+        alert,
+        loading
     }
 }
 </script>

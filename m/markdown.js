@@ -39,6 +39,18 @@ md.use(require('markdown-it-checkbox'));
 md.render('[ ] unchecked')
 md.render('[x] checked')
 
+
+
+md.renderer.rules.image = function (tokens, idx, options, env, self) {
+    let vimeoRE = /^https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+    let token = tokens[idx],
+    aIndex = token.attrIndex('src');
+    console.log(token.attrs[aIndex][1])
+    console.log(token.content)
+    console.log(token.attrs)
+    return "<img src='" + token.attrs[aIndex][1] + "' data-title='" + token.content + "' data-me='" + token.attrs[aIndex][1] + "imageView2/2/w/40/interlace/1/q/100'>"
+}
+
 md.renderer.rules.emoji = function(token, idx) {
   // return "<span class='emoji'>"+twemoji.parse(token[idx].content)+"</span>";
     return twemoji.parse(token[idx].content,{

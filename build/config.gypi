@@ -43,6 +43,7 @@
     "node_use_v8_platform": "true",
     "openssl_fips": "",
     "openssl_no_asm": 0,
+    "shlib_suffix": "so.48",
     "target_arch": "x64",
     "v8_enable_gdbjit": 0,
     "v8_enable_i18n_support": 1,
@@ -52,7 +53,7 @@
     "v8_random_seed": 0,
     "v8_use_snapshot": "true",
     "want_separate_host_toolset": 0,
-    "nodedir": "C:\\Users\\pooc\\.node-gyp\\6.3.1",
+    "nodedir": "C:\\Users\\poocg\\.node-gyp\\6.4.0",
     "copy_dev_lib": "true",
     "standalone_static_library": 1
   }
