@@ -1,0 +1,69 @@
+.btn {
+    display: inline-block;
+    -webkit-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    background: transparent;
+    border: 1px transparent solid;
+    border-radius: 4px;
+    line-height: 1.5;
+    vertical-align: middle;
+    text-align: center;
+    padding: 4px 10px;
+    outline: 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-default {
+    @Color: #efefef;
+    background: @Color;
+    color: #7d7d7d;
+    &:hover {
+        background: lighten(@Color,2%);
+    }
+}
+.btn-danger {
+    @Color: #ffc4c4;
+    background: @Color;
+    color: #7d7d7d;
+    &:hover {
+        background: lighten(@Color,2%);
+    }
+}
+.btn-primary {
+    @Color: #b8f5c5;
+    background: @Color;
+    color: #7d7d7d;
+    &:hover {
+        background: lighten(@Color,2%);
+    }
+}
+.btn-info {
+    @Color: #c6ecff;
+    background: @Color;
+    color: #7d7d7d;
+    &:hover {
+        background: lighten(@Color,2%);
+    }
+}
+.btn-warning {
+    @Color: #ffec8c;
+    background: @Color;
+    color: #7d7d7d;
+    &:hover {
+        background: lighten(@Color,2%);
+    }
+}
+.btns (@color,@borderColor,@hColor : #fff) {
+    color: darken(@color ,25%);
+    border: 1px @border solid;
+    &:hover {
+        color: @hColor;
+        background: lighten(@borderColor ,10%);
+        border-color: lighten(@borderColor,12%)
+    }
+    &:focus {
+        background: @borderColor;
+        border-color: @borderColor
+    }
+}

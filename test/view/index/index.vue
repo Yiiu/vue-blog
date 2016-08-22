@@ -1,24 +1,24 @@
 <template>
     <div class="col-5-c index animated" v-if="loading" transition="op">
-        <article v-for="article in datas">
-            <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
-            <p  class="center">
-                <span><i class="iconfont">&#xe620;</i>{{ article.author }}</span>
-                <span><i class="iconfont">&#xe616;</i>{{ article.update_time[0] }}</span>
-                <span><i class="iconfont">&#xe62e;</i>{{ article.vistits }}</span>
+        <div v-if="loading">
+            <article v-for="article in datas">
+                <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
+                <p  class="center">
+                    <span><i class="iconfont user"></i>{{ article.author }}</span>
+                    <span><i class="iconfont time"></i>{{ article.update_time[0] }}</span>
+                    <span><i class="iconfont hot"></i>{{ article.vistits }}</span>
+                </p>
+                <img v-if="article.indexImg" :src="article.indexImg" alt="">
+                <span v-html="article.content"></span>
+                <div class="more"><a v-link="{ name:'article',params : {id : article._id}}" class="btn btn-blue btn-big">-阅读全文-</a></div>
+            </article>
+            <p class="nonono" v-if="nulls">啊噢，没有文章啦。。</p>
+            <p style="text-align: center;margin: 40px 0;">
+                <a class="btn btn-blue btn-big btn-no" @click="next"  v-if="!nulls">
+                    --加。。载--
+                </a>
             </p>
-            <img v-if="article.indexImg" :src="article.indexImg" alt="">
-            <span v-html="article.content"></span>
-            <div class="more"><a v-link="{ name:'article',params : {id : article._id}}" class="btn btn-blue btn-big">-阅读全文-</a></div>
-        </article>
-        <p class="nonono" v-if="nulls">啊噢，没有文章啦。。</p>
-        <p style="text-align: center;margin: 40px 0;">
-            <a class="btn btn-blue btn-big btn-no" @click="next"  v-if="!nulls">
-                --加。。载--
-            </a>
-        </p>
-        <button @click="loadings"></button>
-        <loading v-ref:loading></loading>
+        </div>
     </div>
 </template>
 <style lang="less">
@@ -64,10 +64,13 @@ div.index{
 }
 </style>
 <script>
-import alert from "../../components/alert";
-import loading from "../../components/loading";
-import { alertshow, loadingin } from '../../store/actions';
+import { loadingin } from '../../store/actions';
 export default {
+    vuex:{
+        actions:{
+            loadingin:loadingin
+        }
+    },
     data(){
         return{
             datas:{},
@@ -80,10 +83,6 @@ export default {
         }
     },
     methods:{
-        loadings:function(){
-            this.$refs.loading.loading = true;
-        }
-        ,
         next:function(){
             var that =this;
             this.page++;
@@ -93,9 +92,8 @@ export default {
                 response.data.forEach(function(item){
                     that.datas.push(item);
                 })
-                this.loadingin(true)
                 if(response.data == ""){
-                    this.nulls = true
+                    this.nulls = true;
                 }
             })
         },
@@ -108,17 +106,16 @@ export default {
         },
         test: function(){
             this.alertsmall = true;
-        },
-        alerts:function(){
-            this.alert = true;
         }
     },
     ready: function(){
+        this.loadingin(true)
         this.$http.post("/index",{
             t:0
         }).then((response)=>{
             this.datas = response.data;
-            this.loading = true
+            this.loading = true;
+            this.loadingin(false)
             if(response.data == ""){
                 this.nulls = true
             }
@@ -126,7 +123,9 @@ export default {
     },
     components:{
         alert,
-        loading
+    },
+    beforeDestroy:function(){
+        this.loadingin(true)
     }
 }
 </script>

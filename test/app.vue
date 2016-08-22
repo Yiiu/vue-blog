@@ -6,6 +6,7 @@
         </div>
         <footers></footers>
         <alertsmall></alertsmall>
+        <loading></loading>
     </div>
 </template>
 <style lang="less">
@@ -31,7 +32,8 @@ export default {
         headers,
         footers,
         alertsmall,
+        loading
     },
-    store
+    store,
 }
 </script>

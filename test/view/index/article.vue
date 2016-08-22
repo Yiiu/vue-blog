@@ -3,9 +3,9 @@
         <article>
             <h1 class="title">{{data.title}}</h1>
             <p class="center">
-                <span><i class="iconfont">&#xe620;</i>{{data.author}}</span>
-                <span><i class="iconfont">&#xe600;</i>{{data.update_time[0]}}</span>
-                <span><i class="iconfont">&#xe62e;</i>{{data.vistits}}</span>
+                <span><i class="iconfont user"></i>{{data.author}}</span>
+                <span><i class="iconfont time"></i>{{data.update_time[0]}}</span>
+                <span><i class="iconfont hot"></i>{{data.vistits}}</span>
             </p>
             <p style="display: none;">
                 <span><i class="iconfont">&#xe609;</i>{{data.type}}</span>
@@ -37,35 +37,27 @@ function GetScroll() {
   }
   return y
 }
+import { loadingin } from '../../store/actions';
 export default {
+    vuex:{
+        actions:{
+            loadingin:loadingin
+        }
+    },
     data(){
         return {
-            loading:false,
             data:{},
-            ds:true
+            loading:false,
         }
-    },
-    methods:{
-        duoshuo:function(t,e){
-            var el = document.createElement('div');//该div不需要设置class="ds-thread"
-            var ar = document.getElementsByClassName("article")[0];
-            el.id = "ds-wrapper;";
-            el.setAttribute('data-thread-key', this.data._id);//必选参数
-            el.setAttribute('data-url', window.location.href);//必选参数
-            el.setAttribute('data-author-key', '作者的本地用户ID');//可选参数
-            DUOSHUO.EmbedThread(el);
-            ar.appendChild(el);
-            this.ds = false;
-        }
-    },
-    init: function(){
     },
     ready:function(){
+        this.loadingin(true)
         let ids = this.$route.matched[0].params.id;
         this.$http.post("/article",{
             id:ids
         }).then((response)=>{
             this.data = response.data;
+            this.loadingin(false)
             this.loading = true;
         })
         var num = null;
@@ -77,10 +69,6 @@ export default {
                 window.scrollTo(0,y-20);
             }
         },5)
-        let that = this;
-        setTimeout(function(){
-            that.duoshuo()
-        },1000)
     },
     components:{
         comment

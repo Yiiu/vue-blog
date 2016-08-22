@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div transition="op" transition-mode="out-in">
         <input type="text" v-model="name">
         <input type="text" v-model="profile">
         <button @click="addtype"></button>

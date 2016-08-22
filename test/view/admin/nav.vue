@@ -1,5 +1,5 @@
 <template lang="html">
-    <nav class="admin">
+    <nav class="admin" transition="op" transition-mode="out-in">
         <ul>
             <li class="up" @click="adminnav">
                 <a　@submit.prevent><i class="iconfont">&#xe618;</i><span>收起</span></a></li>

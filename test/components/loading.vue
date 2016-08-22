@@ -4,9 +4,9 @@
 <script>
 import store from '../store/store' ;
 export default {
-    data(){
-        return{
-            loading: false
+    vuex:{
+        getters:{
+            loading: state => state.loading,
         }
     }
 }

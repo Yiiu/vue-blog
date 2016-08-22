@@ -214,69 +214,7 @@ input[type=text].y,input[type=password].y {
         box-shadow: 0 0 0px 3px lighten(fade(@color,70%), 20%);
     }
 }
-.btn {
-    display: inline-block;
-    -webkit-transition: all 0.1s ease-in;
-    transition: all 0.1s ease-in;
-    background: transparent;
-    border: 1px transparent solid;
-    border-radius: 3px;
-    line-height: 1.42857143;
-    vertical-align: middle;
-    text-align: center;
-    padding: 4px 10px;
-    outline: 0;
-    border-radius: 3px;
-    cursor: pointer;
-    >span {
-        text-shadow: 0 3px 1px rgba(0,0,0,.05);
-    }
-}
-.btn-del {
-    .btns(#ccc , #ed5353);
-    font-size: @checkboxSize - 10;
-}
-.btn-blue {
-    .btns(#ccc , #59b6f4);
-    font-size: @checkboxSize - 10;
-}
-.btn-default {
-    .btns(#ccc , @color);
-    font-size: @checkboxSize;
-}
-.btn-big {
-    font-size: 20px;
-    border-radius: 25px;
-    padding: 0 26px;
-    line-height: 42px;
-}
-.btn-no {
-    background: none;
-    border: none;
-    font-size: 28px;
-    &:hover {
-        background: none;
-        border-color: none;
-        color: #63b6ff;
-    }
-    &:focus {
-        background: none;
-        border-color: none;
-    }
-}
-.btns (@color,@borderColor,@hColor : #fff) {
-    color: darken(@color ,25%);
-    border: 1px @border solid;
-    &:hover {
-        color: @hColor;
-        background: lighten(@borderColor ,10%);
-        border-color: lighten(@borderColor,12%)
-    }
-    &:focus {
-        background: @borderColor;
-        border-color: @borderColor
-    }
-}
+
 textarea.y {
     font-family: "微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
     box-sizing: border-box;

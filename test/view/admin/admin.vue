@@ -6,7 +6,7 @@
         <div class="admin-container">
             <headers></headers>
             <div class="admin-content">
-                <router-view v-if="loading" transition="op" transition-mode="out-in"></router-view>
+                <router-view ></router-view>
             </div>
         </div>
         <navs></navs>

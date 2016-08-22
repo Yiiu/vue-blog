@@ -30,10 +30,10 @@ export default (app) => {
                 require(["./view/logon"],resolve)
             }
         },
-        "/update":{
-            name: "update",
-            component:(resolve)=> {
-                require(["./view/update"],resolve)
+        "/test": {
+            name: "test",
+            component:(resolve) => {
+                require(["./view/test"], resolve)
             }
         },
         "/admin":{
