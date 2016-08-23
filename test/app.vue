@@ -2,7 +2,7 @@
     <div class="main">
         <headers></headers>
         <div class="content">
-        	<router-view></router-view>
+        	<router-view transition-mode="out-in"></router-view>
         </div>
         <footers></footers>
         <alertsmall></alertsmall>

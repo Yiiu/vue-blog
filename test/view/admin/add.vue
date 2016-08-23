@@ -1,5 +1,5 @@
 <template>
-    <div transition="op" transition-mode="out-in">
+    <div  transition="op" transition-mode="out-in">
         <input type="text" class="y block" placeholder="标题" v-model="data.title">
         <div class="col-5 p-r-c" >
             <select class="types" v-model="data.type">
