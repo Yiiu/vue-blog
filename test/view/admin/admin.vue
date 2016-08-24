@@ -5,7 +5,7 @@
         }">
         <div class="admin-container">
             <headers></headers>
-            <div class="admin-content" transition-mode="out-in">
+            <div class="admin-content">
                 <router-view transition-mode="out-in"></router-view>
             </div>
         </div>

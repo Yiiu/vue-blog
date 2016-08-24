@@ -27,9 +27,20 @@
             <p>默认黄色</p>
             <p>#ffec8c</p>
         </div>
+        <h1>文本框</h1>
+        <input type="text" class="y">
+        <input type="text" class="y red">
+        <input type="text" class="y green">
+        <input type="text" class="y blue">
+        <div>
+            <label>
+                test:<input type="checkbox" class="y">
+            </label>
+        </div>
     </div>
 </template>
 <style lang="less">
+@import "../assets/styles/_var.less";
 .wrapper {
     width: 1180px;
     margin: 0 auto;
@@ -38,28 +49,12 @@
     width: 120px;
     height: 120px;
     border-radius: 15px;
-    float: left;
+    display: inline-block;
     margin-right: 15px;
     margin-bottom: 15px;
     p {
         text-align: center;
         margin: 5px 0;
-        color: #7d7d7d;
     }
-}
-.default {
-    background: #efefef;
-}
-.red {
-    background: #ffc4c4;
-}
-.green {
-    background: #b8f5c5;
-}
-.blue {
-    background: #c6ecff;
-}
-.yellow {
-    background: #ffec8c;
 }
 </style>

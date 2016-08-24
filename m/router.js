@@ -28,4 +28,5 @@ module.exports = (app) => {
     app.post("/admin/addtype", routers.admin.addtype)
 
     app.post("/types", routers.admin.types)
+    app.post("/tags", routers.admin.tags)
 }

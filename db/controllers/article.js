@@ -41,6 +41,26 @@ article.up = (id, datas,callback) => {
         }
     });
 }
+// 添加tag
+article.upTags = (id, tags,callback) => {
+    article.update({"_id":id},{"$addToSet":{"tags":tags}}, (err, data) => {
+        if (err) {
+            return callback("err");
+        }else {
+            return callback(data);
+        }
+    });
+}
+// 删除tag
+article.upTags = (id, tags,callback) => {
+    article.update({"_id":id},{"$addToSet":{"tags":tags}}, (err, data) => {
+        if (err) {
+            return callback("err");
+        }else {
+            return callback(data);
+        }
+    });
+}
 // 删除文章
 article.del = (id, callback)  => {
     article.remove({"_id":id},(err, data) => {

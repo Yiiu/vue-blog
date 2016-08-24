@@ -1,5 +1,5 @@
 <template>
-    <div class="admin" v-if="loading" transition="op" transition-mode="out-in">
+    <div class="admin" v-if="loading" transition="op">
         <ul class="clearfix">
             <!--
             <li class="clearfix">

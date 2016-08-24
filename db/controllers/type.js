@@ -1,5 +1,6 @@
 let mongoose = require("mongoose");
 let type = require("../models/type");
+let article = require("./article")
 
 // 添加标签
 type.add = function(data, callback){
@@ -32,7 +33,7 @@ type.addid = function(tag,id,callback){
         }
     })
 }
-// 删除标签文章
+// 删除文章标签，先删除type的文章，然后更改文章的type
 type.delid = function(tag, id, callback){
     type.update({"_id":tag},{"$pull":{"article":id}},function(err, data){
         if(err){

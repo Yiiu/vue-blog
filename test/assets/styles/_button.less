@@ -15,7 +15,7 @@
 }
 
 .btn-default {
-    @Color: #efefef;
+    @Color: @d-gray;
     background: @Color;
     color: #7d7d7d;
     &:hover {
@@ -23,32 +23,32 @@
     }
 }
 .btn-danger {
-    @Color: #ffc4c4;
+    @Color: @d-red;
     background: @Color;
-    color: #7d7d7d;
+    color: #fff;
     &:hover {
         background: lighten(@Color,2%);
     }
 }
 .btn-primary {
-    @Color: #b8f5c5;
+    @Color: @d-green;
     background: @Color;
-    color: #7d7d7d;
+    color: #fff;
     &:hover {
         background: lighten(@Color,2%);
     }
 }
 .btn-info {
-    @Color: #c6ecff;
+    @Color: @d-blue;
     background: @Color;
-    color: #7d7d7d;
+    color: #fff;
     &:hover {
         background: lighten(@Color,2%);
     }
 }
 .btn-warning {
     @Color: #ffec8c;
-    background: @Color;
+    background: @d-yellow;
     color: #7d7d7d;
     &:hover {
         background: lighten(@Color,2%);

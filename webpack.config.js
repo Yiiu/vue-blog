@@ -17,7 +17,7 @@ module.exports = {
             { test: /\.vue$/ , loader: "vue"},
             { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
             { test: /\.css$/, loader: 'style!css!autoprefixer'},
-            { test: /\.less$/,loader: "style!css!less"},
+            { test: /\.less$/, loader: 'style-loader!css-loader!less-loader!autoprefixer' }, // use ! to chain loaders
             { test: /\.(eot|woff|svg|ttf)$/, loader: "file-loader" },
             { test: /\.(png|jpg)$/, loader: "url-loader?limit=8192"}
         ]
@@ -27,7 +27,12 @@ module.exports = {
     plugins: ['transform-runtime']
   },
     resolve: {
-        extensions: ['', '.js', '.vue'],
+      extensions: ['', '.js', '.vue'],
+      alias: {
+        'src': './test/assets/styles',
+        'assets': path.resolve(__dirname, 'test/assets'),
+        'components': path.resolve(__dirname, 'test/components')
+      }
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin('vendors', './script/vendors.js'),

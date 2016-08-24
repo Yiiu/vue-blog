@@ -45,9 +45,6 @@ md.renderer.rules.image = function (tokens, idx, options, env, self) {
     let vimeoRE = /^https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     let token = tokens[idx],
     aIndex = token.attrIndex('src');
-    console.log(token.attrs[aIndex][1])
-    console.log(token.content)
-    console.log(token.attrs)
     return "<img src='" + token.attrs[aIndex][1] + "' data-title='" + token.content + "' data-me='" + token.attrs[aIndex][1] + "imageView2/2/w/40/interlace/1/q/100'>"
 }
 

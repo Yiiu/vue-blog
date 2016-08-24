@@ -1,5 +1,5 @@
 <template lang="html">
-    <nav class="admin">
+    <nav class="admin" transition="op">
         <ul>
             <li class="up" @click="adminnav">
                 <a　@submit.prevent><i class="iconfont">&#xe618;</i><span>收起</span></a></li>
@@ -16,11 +16,6 @@
                 <a href="#"><i class="iconfont">&#xe62b;</i><span>评论</span></a>
             </li>
         </ul>
-        <div class="add">
-            <a v-link="{ path: '/admin/add' }">
-                <i class="iconfont">&#xe628;</i>
-            </a>
-        </div>
     </nav>
 </template>
 <script>
@@ -81,23 +76,6 @@ nav.admin {
                 width: 65px;
                 font-size: 18px;
             }
-        }
-    }
-    .add {
-        a {
-            display: inline-block;
-            width: 55px;
-            height: 55px;
-        }
-        i {
-            position: absolute;
-            bottom: 0;
-            display: inline-block;
-            width: 55px;
-            height: 55px;
-            line-height: 55px;
-            text-align: center;
-            font-size: 26px;
         }
     }
 }

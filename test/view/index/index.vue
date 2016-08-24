@@ -1,6 +1,5 @@
 <template>
-    <div class="col-5-c index animated" v-if="loading" transition="op"
-  transition-mode="out-in">
+    <div class="col-5-c index animated" v-if="loading" transition="op">
         <div v-if="loading">
             <article v-for="article in datas">
                 <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>

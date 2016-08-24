@@ -1,5 +1,5 @@
 <template>
-    <div class="col-6-c article" v-if="loading"　transition="op">
+    <div class="col-6-c article" v-if="loading" transition="op">
         <article>
             <h1 class="title">{{data.title}}</h1>
             <p class="center">
@@ -72,6 +72,9 @@ export default {
     },
     components:{
         comment
+    },
+    beforeDestroy:function(){
+        this.loadingin(true)
     }
 }
 </script>

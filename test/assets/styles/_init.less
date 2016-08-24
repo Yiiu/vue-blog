@@ -1,6 +1,6 @@
 body {
     overflow: hidden;
-    font-family: 'Open Sans',"Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei","微软雅黑",Arial,Verdana,sans-serif !important;
+    font-family: @font;
     margin: 0;
     color: @9;
     overflow-y: scroll;
@@ -36,29 +36,9 @@ p{
     margin-bottom: 19px;
     line-height: 1.6;
 }
-input {
-    font-family: "Muli","微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
-    text-shadow: 0 0 1px #747474;
-    color: @fuOne;
-}
 button {
         font-family: "微软雅黑","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei",Arial,Verdana,sans-serif !important;
 }
-// 去除记住密码的黄色背景
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset;
-}
-.clearfix:after { visibility: hidden; display: block; content: ""; clear: both; font-size: 0; height: 0; }
-.clearfix { zoom: 1; }
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset;
-}
-::selection { background:#a0d3ff; }
-/* mozilla firefox */
-::-moz-selection { background:#a0d3ff; }
-
 
 .emoji {
   width: 1.2em !important;

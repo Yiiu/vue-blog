@@ -11,7 +11,26 @@ tag.add = function(data, callback){
         }
     })
 }
-
+// 查询一个tag
+tag.findId = function(name,callback){
+    tag.findOne({"_id":name},function(err, data){
+        if(err){
+            return callback("err");
+        }else {
+            return callback(data);
+        }
+    })
+}
+// 查询一个tag
+tag.findO = function(name,callback){
+    tag.findOne({"name":name},function(err, data){
+        if(err){
+            return callback("err");
+        }else {
+            return callback(data);
+        }
+    })
+}
 // 查询tag
 tag.finds = function(callback){
     tag.find({},function(err, data){
@@ -23,8 +42,8 @@ tag.finds = function(callback){
     })
 }
 // 添加tag文章
-tag.addid = function(tag,id,callback){
-    tag.update({"_id":tag},{"$addToSet":{"article":id}},function(err, data){
+tag.addArticle = function(tags,id,callback){
+    tag.update({"_id":tags},{"$addToSet":{"article":id}},function(err, data){
         if(err){
             return callback("err");
         }else {
@@ -33,8 +52,17 @@ tag.addid = function(tag,id,callback){
     })
 }
 // 删除tag文章
-tag.delid = function(tag, id, callback){
-    tag.update({"_id":tag},{"$pull":{"article":id}},function(err, data){
+tag.delid = function(tags, id, callback){
+    tag.update({"_id":tags},{"$pull":{"article":id}},function(err, data){
+        if(err){
+            return callback("err");
+        }else {
+            return callback(data);
+        }
+    })
+}
+tag.del = function(tags, id, callback){
+    tag.remove({"_id":tags} ,function(err, data){
         if(err){
             return callback("err");
         }else {

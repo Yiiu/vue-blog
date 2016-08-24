@@ -1,5 +1,6 @@
 const article = require("../../db/controllers/article");
 const type = require("../../db/controllers/type");
+const tag = require("../../db/controllers/tag");
 // 格式化日期
 function day(){
     let data = new Date();
@@ -28,7 +29,6 @@ module.exports = {
             var articles = {
                 title: req.body.title,
                 author: req.session.name,
-                tags: req.body.tags,
                 enabled: true,
                 content: req.body.content,
                 update_time:day(),
@@ -41,18 +41,29 @@ module.exports = {
                 if(data == "err"){
                     res.jsonp({op:"false"});
                 }else {
+                    req.body.tags.forEach((item) =>{
+                        tag.findO(item,(tags) => {
+                            if(tags==null || tags == ""){
+                                tag.add({"name":item}, (tagss) => {
+                                    tag.addArticle(tagss._id, data._id, function(tagsss){
+                                        article.upTags(data._id, tagss._id, function(tagssss){
+                                        })
+                                    })
+                                })
+                            }else{
+                                tag.addArticle(tags._id, data._id, function(tagsss){
+                                    article.upTags(data._id, tags._id, function(tagssss){
+                                    })
+                                })
+                            }
+                        })
+                    })
                     if(req.body.type != ""){
                         // 把这篇文章添加到type的acritle里去
                         type.addid(req.body.type, data._id, (data) => {
-                            if(data == "err"){
-                                res.jsonp({op:"false"});
-                            }else {
-                                res.jsonp({op:"true"});
-                            }
                         })
-                    }else {
-                        res.jsonp({op:"true"});
                     }
+                    res.jsonp({op:"true"});
                 }
             });
         }
@@ -74,13 +85,27 @@ module.exports = {
     },
     update: (req, res, next) => {
         if(req.session.sign == "true"){
+            if(req.body.data.type == ""){
+                req.body.data.type = null
+            }
             article.up(req.body.id,req.body.data,(data) => {
                 type.addid(req.body.data.type, req.body.id, (types) => {
                     type.delid(req.body.oldtype, req.body.id, (types) => {
-                        res.jsonp({op:"true"})
                     })
                 })
             });
+            // tag 假如原始tag没存在于心的tag里，删除tag里的此文章，删除文章中的此tag
+            // 否则，检测tag是否存在，假如不存在就创建，添加文章，假如存在添加文章
+            console.log(req.body.oldtag);
+            console.log(req.body.tags);
+            if(req.body.oldtag == ""){
+            }else {
+                req.body.oldtag.forEach((i) => {
+                    if(req.body.indexOf < 0){
+                        console.log(i.name);
+                    }
+                })
+            }
         }else {
             res.jsonp({op:"false"});
         }
@@ -106,9 +131,13 @@ module.exports = {
                     if(data != "err"){
                         article.del(data._id,(del) => {
                             if(data != "err"){
-                                type.delid(data.type,data._id, () => {
+                                if(data.type != ""||data.type != null){
+                                    type.delid(data.type,data._id, () => {
+                                        res.jsonp({op:"true"})
+                                    })
+                                }else {
                                     res.jsonp({op:"true"})
-                                })
+                                }
                             }
                         });
                     }
@@ -131,6 +160,16 @@ module.exports = {
         type.finds((data) => {
             res.jsonp(data);
         })
-    } ,
+    },
+    tags: (req, res, next) => {
+        var a = new Array();
+        req.body.tags.forEach( function(item, callback){
+            tag.findO(item, (datas)=>{
+                a.push(datas)
+            })
+            callback(a)
+        })
+        console.log(a)
+    },
 
 }
