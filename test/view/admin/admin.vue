@@ -13,6 +13,7 @@
     </div>
 </template>
 <style lang="less">
+@import "../../assets/styles/_var";
 div.admin-open {
     nav.admin {
         width: 120px !important;
@@ -34,7 +35,7 @@ div.admin-box {
         left: 0;
         right: 0;
         bottom: 0;
-        padding-left: 55px;
+        padding-left: @ad-nav-h;
     }
     div.admin-content {
         padding-top: 70px;
@@ -65,11 +66,9 @@ export default {
             loading:false
         }
     },
-    init: function(){
-        this.$http.post("/log",).then((response)=>{
-            this.op = response.data.op;
-            console.log(response.data)
-            if(this.op != "true"){
+    ready: function(){
+        this.$http.post("/checklogin",).then((response)=>{
+            if(response.body.status == "fail"){
                 window.location.href = "#/login";
             }else {
                 this.loading = true

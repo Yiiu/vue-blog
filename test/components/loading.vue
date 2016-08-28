@@ -22,6 +22,7 @@ export default {
         margin: 0;
         z-index: 99999;
         animation: loading 2s ease-in-out 0s infinite;
+        will-change: auto;
     }
 @-webkit-keyframes loading {
     0%{

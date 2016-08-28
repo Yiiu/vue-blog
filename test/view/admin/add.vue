@@ -1,6 +1,6 @@
 <template>
     <div transition="op">
-        <input type="text" class="y block" placeholder="标题" v-model="data.title">
+        <input type="text" class="x block" placeholder="标题" v-model="data.title">
         <div class="col-5 p-r-c" >
             <select class="types" v-model="data.type">
                 <option value="">未分类</option>
@@ -10,7 +10,7 @@
         <div class="col-5 p-l-c">
             <tag :tags.sync="data.tags"></tag>
         </div>
-        <textarea name="" class="y block" cols="30" rows="10" v-model="data.content"></textarea>
+        <textarea name="" class="x block" cols="30" rows="10" v-model="data.content"></textarea>
         <button class="btn btn-default block" @click="create">on</button>
     </div>
 </template>

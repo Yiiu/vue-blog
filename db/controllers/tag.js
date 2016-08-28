@@ -1,5 +1,6 @@
-let mongoose = require("mongoose");
-let tag = require("../models/tag");
+const mongoose = require("mongoose");
+const tag = require("../models/tag");
+const { wrap: async } = require("co");
 
 // 添加tag
 tag.add = function(data, callback){
@@ -12,14 +13,8 @@ tag.add = function(data, callback){
     })
 }
 // 查询一个tag
-tag.findId = function(name,callback){
-    tag.findOne({"_id":name},function(err, data){
-        if(err){
-            return callback("err");
-        }else {
-            return callback(data);
-        }
-    })
+tag.findId = function(name){
+    tag.findOne({"_id":name})
 }
 // 查询一个tag
 tag.findO = function(name,callback){

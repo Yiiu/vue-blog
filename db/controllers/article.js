@@ -1,7 +1,67 @@
 const mongoose = require('mongoose');
 const article = require("../models/article")
+const type = require("../models/type");
+const tag = require("../models/tag");
+const co = require('co');
 
+
+
+exports.index = (req, res)=>{
+    co(function *(){
+        const page = req.body.t;
+        const limit = 10;
+        let data = yield article
+            .find()
+            .skip(page*limit)
+            .limit(limit)
+            .exec()
+        try{
+            res.json({
+                status:"success",
+                data:data
+            })
+        } catch(err){
+            res.json({
+                status:"fail",
+                msg:"加载失败"
+            })
+        }
+    })
+}
+exports.edit = (req, res)=>{
+    co(function *(){
+        const id = req.body.id;
+        let data = yield article
+            .findById(id)
+            .populate({
+                path: "tags",
+                select: "name _id"
+            })
+            .populate({
+                path: "type",
+                select: "name _id"
+            })
+            .exec()
+        try{
+            res.json({
+                status:"success",
+                data:data
+            })
+        } catch(err){
+            res.json({
+                status:"fail",
+                msg:"加载失败"
+            })
+        }
+    })
+}
+exports.add = (req, res)=>{
+    co(function *(){
+        
+    })
+}
 // 添加文章
+/*
 article.add = (data, callback) => {
     article.create(data, (err, data) => {
         if (err) {
@@ -92,3 +152,4 @@ article.search = (title, cc, callback) => {
     });
 }
 module.exports = article;
+*/

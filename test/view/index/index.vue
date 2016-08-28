@@ -1,12 +1,12 @@
 <template>
     <div class="col-5-c index animated" v-if="loading" transition="op">
         <div v-if="loading">
-            <article v-for="article in datas">
+            <article v-for="article in data">
                 <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
                 <p  class="center">
-                    <span><i class="iconfont user"></i>{{ article.author }}</span>
-                    <span><i class="iconfont time"></i>{{ article.update_time[0] }}</span>
-                    <span><i class="iconfont hot"></i>{{ article.vistits }}</span>
+                    <span><i class="icon-head"></i>{{ article.author }}</span>
+                    <span><i class="icon-clock"></i>{{ article.update_time[0] }}</span>
+                    <span><i class="icon-eye"></i>{{ article.vistits }}</span>
                 </p>
                 <img v-if="article.indexImg" :src="article.indexImg" alt="">
                 <span v-html="article.content"></span>
@@ -73,7 +73,9 @@ export default {
     },
     data(){
         return{
-            datas:{},
+            data:{},
+            status:null,
+            msg:null,
             nulls:false,
             page: 0,
             querys:"",
@@ -90,7 +92,7 @@ export default {
                 t:this.page
             }).then((response)=>{
                 response.data.forEach(function(item){
-                    that.datas.push(item);
+                    that.data.push(item);
                 })
                 if(response.data == ""){
                     this.nulls = true;
@@ -113,10 +115,12 @@ export default {
         this.$http.post("/index",{
             t:0
         }).then((response)=>{
-            this.datas = response.data;
+            this.data = response.data.data;
+            this.status = response.data.status;
+            this.msg = response.data.msg;
             this.loading = true;
             this.loadingin(false)
-            if(response.data == ""){
+            if(this.data == ""){
                 this.nulls = true
             }
         })

@@ -1,59 +1,83 @@
 <template>
     <div class="login col-4-c" transition="op" transition-mode="out-in" v-if="loading">
         <label>
-            <input type="text" id="name" class="y block" placeholder="帐号：" autocomplete="new-password"  v-el:name>
+            <input type="text" id="name" class="y block" placeholder="帐号：" autocomplete="new-password"
+                v-model="name"
+            >
         </label>
         <label>
             <input type="password" class="y block" placeholder="密码：" id="password" autocomplete="new-password"  
-                v-el:password
-                @keyup.enter="test"
+                v-model="password"
+                @keyup.enter="login"
             >
         </label>
-        <button @click="test" class="btn btn-default block">on</button>
+        <button @click="login" class="btn btn-default block">on</button>
     </div>
 </template>
 <script>
-import { alertshow, alerttitle, alertstyle } from '../store/actions';
+import { alertshow, alerttitle, alertstyle, loadingin } from '../store/actions';
 export default {
     vuex:{
         actions: {
           alertshow,
           alerttitle,
-          alertstyle
+          alertstyle,
+          loadingin
         }
     },
     data(){
         return {
+            name:"",
+            password:"",
             loading:false,
+            status:"",
+            msg:"",
         }
     },
     methods:{
-        test:function(){
+        login:function(){
+            if(this.name == ""){
+                this.alertshow(true)
+                this.alertstyle("warn")
+                this.alerttitle("账号不能为空")
+                return false
+            }else if(this.password == "") {
+                this.alertshow(true)
+                this.alertstyle("warn")
+                this.alerttitle("密码不能为空")
+                return false
+            }
             this.$http.post("/login",{
-                name:this.$els.name.value,
-                password:this.$els.password.value
+                name:this.name,
+                password:this.password
             }).then((response)=>{
-                this.op = response.data.op;
-                if(this.op == "true"){
+                this.status = response.data.status;
+                this.msg = response.data.msg;
+                if(this.status == "success"){
                     this.alertshow(true)
                     this.alerttitle("登陆成功")
                     window.location.href = "#/admin";
                 }else {
                     this.alertshow(true)
                     this.alertstyle("warn")
-                    this.alerttitle("登录失败！！")
+                    this.alerttitle(this.msg)
                 }
             })
         }
     },
-    init: function(){
-        this.$http.post("/log",).then((response)=>{
-            if(response.data.op == "true"){
+    ready: function(){
+        this.loadingin(true)
+        this.$http.post("/checklogin",).then((response)=>{
+            if(response.data.status == "success"){
                 window.location.href = "#/admin";
             }else {
                 this.loading = true;
+                this.loadingin(false)
             }
         })
+    },
+    beforeDestroy:function(){
+        this.loadingin(true)
     }
 }
 </script>

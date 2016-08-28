@@ -1,7 +1,6 @@
 <template lang="html">
     <header class="admin">
         <a class="logo"  v-link="'/admin'">
-            W
         </a>
     </header>
 </template>

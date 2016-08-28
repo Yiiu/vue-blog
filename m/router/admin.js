@@ -1,6 +1,9 @@
 const article = require("../../db/controllers/article");
 const type = require("../../db/controllers/type");
 const tag = require("../../db/controllers/tag");
+const async = require('async');
+const Promise = require("bluebird")
+const co = require("co");
 // 格式化日期
 function day(){
     let data = new Date();
@@ -79,9 +82,16 @@ module.exports = {
     },
     // 获取文章
     edit: (req, res, next) => {
-        article.findO(req.body.id,(data) => {
-            res.jsonp(data);
-        });
+        co(function *(){
+            article
+            .findById(req.body.id)
+            .populate("tags")
+            .populate("type")
+            .exec((err, data)=>{
+                console.log(data)
+                res.jsonp(data)
+            })
+        })
     },
     update: (req, res, next) => {
         if(req.session.sign == "true"){
@@ -162,14 +172,13 @@ module.exports = {
         })
     },
     tags: (req, res, next) => {
-        var a = new Array();
-        req.body.tags.forEach( function(item, callback){
-            tag.findO(item, (datas)=>{
-                a.push(datas)
+        co(function *(){
+            article
+            .findById(req.body.id)
+            .populate("tags")
+            .exec((err, data)=>{
             })
-            callback(a)
         })
-        console.log(a)
     },
 
 }

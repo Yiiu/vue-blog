@@ -29,7 +29,7 @@
                         <span>{{datas.author}}</span>
                     </div>
                     <div class="dels" style="text-align: center;" @click="alertDel(datas._id)">
-                        <i class="iconfont">&#xe615;</i>
+                        <i class="icon-trash"></i>
                     </div>
                     <div class="input">
                         <input type="checkbox" class="y" name="{{datas._id}}" id="{{datas._id}}" value="{{datas._id}}"
@@ -45,14 +45,15 @@
 <script>
 import loading from "../../components/loading"
 import alert from "../../components/alert"
-import { alertshow, alerttitle, alertstyle, adminnav } from '../../store/actions';
+import { alertshow, alerttitle, alertstyle, adminnav, loadingin } from '../../store/actions';
 export default {
     vuex:{
         actions: {
           alertshow,
           alerttitle,
           alertstyle,
-          adminnav
+          adminnav,
+          loadingin
         },
         getters:{
             nav:state => state.adminnav
@@ -134,17 +135,24 @@ export default {
             })
         }
     },
-    init: function(){
-        this.$http.post("/admin",{
+    ready: function(){
+        this.loadingin(true)
+        this.$http.post("/index",{
             t:0
         }).then((response)=>{
-            this.data = response.data;
+            this.data = response.data.data;
+            this.status = response.data.status;
+            this.msg = response.data.msg;
+            this.loadingin(false)
             this.loading = true;
         })
     },
     components: {
         loading,
         alert
+    },
+    beforeDestroy:function(){
+        this.loadingin(true)
     }
 }
 </script>
@@ -171,7 +179,7 @@ div.admin {
             div.container {
                 transition: 0.3s all;
                 height: 100%;
-                background: #f8f8f8;
+                border: 1px #d4e1ea solid;
                 padding: 0 15px;
                 &:hover {
                     box-shadow: 0 1px 5px -1px #ccc;

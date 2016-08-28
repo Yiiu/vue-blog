@@ -1,19 +1,25 @@
 <template lang="html">
     <nav class="admin" transition="op">
         <ul>
-            <li class="up" @click="adminnav">
-                <a　@submit.prevent><i class="iconfont">&#xe618;</i><span>收起</span></a></li>
+            <li class="logo">
+                <a v-link="'/admin'">W</a>
             <li>
-                <a href="#"><i class="iconfont">&#xe610;</i><span>文章</span></a>
+                <a href="#"><i class="icon-align-left"></i><span>文章</span></a>
             </li>
             <li>
-                <a v-link="{ path: '/admin/addtype' }"><i class="iconfont">&#xe623;</i><span>分类</span></a>
+                <a v-link="{ path: '/admin/addtype' }"><i class="icon-command"></i><span>分类</span></a>
             </li>
             <li>
-                <a href="#"><i class="iconfont">&#xe637;</i><span>标签</span></a>
+                <a href="#"><i class="icon-tag"></i><span>标签</span></a>
             </li>
             <li>
-                <a href="#"><i class="iconfont">&#xe62b;</i><span>评论</span></a>
+                <a href="#"><i class="icon-speech-bubble"></i><span>评论</span></a>
+            </li>
+            <li>
+                <a href="#"><i class="icon-cog"></i><span>设置</span></a>
+            </li>
+            <li class="bottom">
+                <a v-link="{ path: '/admin/add' }"><i class="icon-open"></i><span>新建文章</span></a>
             </li>
         </ul>
     </nav>
@@ -29,44 +35,53 @@ export default {
 }
 </script>
 <style lang="less">
+@import "../../assets/styles/_var";
 nav.admin {
     transition: 0.3s width;
     position: fixed;
     top: 0;
-    width: 55px;
-    background: #f8f8f8;
-    border-right: 1px #e1e1e1 solid;
+    width: @ad-nav-h;
+    background: #fff;
+    border-right: 1px @ad-border-c solid;
     height: 100%;
     overflow: hidden;
     z-index: 999;
     &.open {
-        width: 120px;
+        width: @ad-nav-w;
     }
     ul {
         margin: 0;
         padding: 0;
-        width: 120px;
+        width: @ad-nav-w;
         li {
-            height: 55px;
-            line-height: 55px;
+            height: @ad-nav-h;
+            line-height: @ad-nav-h;
             a {
                 display: block;
                 height: 100%;
+                color: @ad-a-c;
             }
-            border-bottom: 1px #e1e1e1 solid;
-            &.up {
-                height: 65px;
-                line-height: 65px;
-                i {
-                    height: 65px;
-                    line-height: 65px;
-                    font-size: 26px;
+            &.logo {
+                margin-bottom: 15px;
+                a {
+                    width: @ad-nav-h;
+                    height: @ad-nav-h;
+                    line-height: @ad-nav-h;
+                    background: @8;
+                    color: #fff;
+                    font-size: 42px;
+                    text-align: center;
                 }
+            }
+            &.bottom {
+                position: absolute;
+                bottom: 25px;
             }
             i {
                 display: inline-block;
-                width: 55px;
-                height: 55px;
+                width: @ad-nav-h;
+                height: @ad-nav-h;
+                line-height: @ad-nav-h;
                 text-align: center;
                 font-size: 26px;
             }

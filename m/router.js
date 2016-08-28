@@ -1,12 +1,19 @@
+const article = require("../db/controllers/article");
+const user = require("../db/controllers/users");
 module.exports = (app) => {
-	//路由模块
+	// 全部文章
+    app.post("/index", article.index)
+    // 文章详情
+    app.post("/article", article.edit)
+    app.post("/login", user.login)
+    app.post("/checklogin", user.checkLogin)
+    /*
 	const routers = {
 		admin: require("./router/admin"),
 		log: require("./router/login"),
 		index: require("./router/index")
 	};
     // 登录
-    app.post("/login",routers.log.login)
     app.post("/logon", routers.log.logon)
     // 登陆状态检测
     app.post("/log",routers.log.state)
@@ -14,7 +21,6 @@ module.exports = (app) => {
 
     app.post("/querys",routers.index.search)
     // 首页
-    app.post("/index", routers.index.index)
     // 文章详情页
     app.post("/article", routers.index.article)
 
@@ -29,4 +35,5 @@ module.exports = (app) => {
 
     app.post("/types", routers.admin.types)
     app.post("/tags", routers.admin.tags)
+    */
 }

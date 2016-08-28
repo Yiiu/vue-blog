@@ -1,8 +1,8 @@
 <template>
-    <div transition="op">
+    <div transition="op" v-if="loading">
         <input type="text" class="y block" placeholder="标题" v-model="data.title">
         <div class="col-5 p-r-c" >
-            <select class="types" v-model="data.type">
+            <select class="types" v-model="data.type._id">
                 <option value="">未分类</option>
                 <option value="{{data._id}}" v-for="data in type">{{ data.name }}</option>
             </select>
@@ -16,14 +16,17 @@
 </template>
 <script>
 import tag from "../../components/tag";
+import { loadingin } from '../../store/actions';
 export default {
+    vuex:{
+        actions:{
+            loadingin:loadingin
+        }
+    },
     data(){
         return {
-            data:{
-                title:"",
-                content:"",
-                type:"",
-            },
+            data:null,
+            loading:false,
             type:[],
             tags:[],
             oldtag:[],
@@ -49,23 +52,20 @@ export default {
         tag
     },
     ready:function(){
+        this.loadingin(true)
         let ids = this.$route.matched[1].params.id;
-        this.$http.post("/admin/id",{
+        this.$http.post("/article",{
             id:ids
         }).then((response)=>{
-            this.data = response.data;
-            this.oldtype = response.data.type;
-            this.$http.post("/types",).then((type) =>{
-                this.type = type.data;
-            })
-            this.$http.post("/tags",{tags:this.data.tags}).then((tag) =>{
-                console.log(tag)
-                this.oldtag = tags.data;
-                this.oldtag.forEach((item)=>{
-                    this.tags.push(item.name)
-                });
-            })
+            this.data = response.data.data;
+            this.status = response.data.status;
+            this.msg = response.data.msg;
+            this.loading = true;
+            this.loadingin(false)
         })
+    },
+    beforeDestroy:function(){
+        this.loadingin(true)
     }
 }
 </script>

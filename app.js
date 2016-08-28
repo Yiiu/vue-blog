@@ -1,9 +1,11 @@
-let express = require('express');
-let app = express();
-let bodyParser = require('body-parser');
-let morgan = require('morgan');
-let router = require("./m/router");
-let session = require('express-session');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const router = require("./m/router");
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const data = require("./settings");
 
 
 app.use(session({
@@ -12,7 +14,10 @@ app.use(session({
     secret: 'test',
     resave: false,
     saveUninitialized: true,
-    maxAge: 1000000*60*60 // default session expiration is set to 1 hour
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+    store: new MongoStore({
+        url: "mongodb://"+data.host+":"+data.port+"/"+data.db,
+    })
 }));
 
 app.all("*", function (req, res, next) {
@@ -25,6 +30,8 @@ app.all("*", function (req, res, next) {
         next();
     }
 });
+
+app.use(require('express-promise')());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.static('dist'));

@@ -250,7 +250,8 @@ button {
 
 /* 必需 */
 .op-transition {
-      transition: all .7s ease;
+      transition: all .5s ease;
+      will-change: opacity;
 }
 
 /* .op-enter 定义进入的开始状态 */
@@ -258,10 +259,10 @@ button {
 .op-enter {
     opacity: 0;
     height: 0;
-    transform: translate(0,60px);
+    //transform: translate(0,60px);
 }
 .op-leave {
     opacity: 0;
     height: 0;
-    transform: translate(0,-60px);
+    //transform: translate(0,-60px);
 }

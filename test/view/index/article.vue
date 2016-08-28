@@ -3,9 +3,9 @@
         <article>
             <h1 class="title">{{data.title}}</h1>
             <p class="center">
-                <span><i class="iconfont user"></i>{{data.author}}</span>
-                <span><i class="iconfont time"></i>{{data.update_time[0]}}</span>
-                <span><i class="iconfont hot"></i>{{data.vistits}}</span>
+                <span><i class="icon-head"></i>{{data.author}}</span>
+                <span><i class="icon-clock"></i>{{data.update_time[0]}}</span>
+                <span><i class="icon-eye"></i>{{data.vistits}}</span>
             </p>
             <p style="display: none;">
                 <span><i class="iconfont">&#xe609;</i>{{data.type}}</span>
@@ -14,29 +14,12 @@
             <div class="container" v-html="data.content">
             </div>
         </article>
+        <comment></comment>
         <h2 class="end">&lt;end/&gt;</h2>
     </div>
 </template>
 <script>
-import comment from "../../components/comment"
-function GetScroll() {
-  var x, y;
-  if(window.pageYOffset) {
-    // all except IE
-    y = window.pageYOffset;
-    x = window.pageXOffset;
-  } else if(document.documentElement
-    && document.documentElement.scrollTop) {
-    // IE 6 Strict
-    y = document.documentElement.scrollTop;
-    x = document.documentElement.scrollLeft;
-  } else if(document.body) {
-    // all other IE
-    y = document.body.scrollTop;
-    x = document.body.scrollLeft;
-  }
-  return y
-}
+import comment from "./comment";
 import { loadingin } from '../../store/actions';
 export default {
     vuex:{
@@ -56,19 +39,14 @@ export default {
         this.$http.post("/article",{
             id:ids
         }).then((response)=>{
-            this.data = response.data;
-            this.loadingin(false)
+            this.data = response.data.data;
+            this.status = response.data.status;
+            this.msg = response.data.msg;
             this.loading = true;
+            this.loadingin(false)
         })
         var num = null;
-        var scroll = setInterval(function(){
-            var y = GetScroll();
-            if(y ==0 ){
-                clearInterval(scroll);
-            }else {
-                window.scrollTo(0,y-20);
-            }
-        },5)
+        window.scrollTo(0, 0);
     },
     components:{
         comment

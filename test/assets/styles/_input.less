@@ -111,7 +111,6 @@ input[type=checkbox].y_i,input[type=radio].y {
     }
 }
 input[type=checkbox].y {
-    .iconfont;
     margin: 4px;
     margin-top: 2px;
     position: relative;
@@ -181,6 +180,24 @@ input[type=text].y,input[type=password].y {
     font-family: @font;
     &:focus {
         background: darken(@d-gray, 3%);
+    }
+}
+input[type=text].x,input[type=password].x {
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: none;
+    font-size: @checkboxSize;
+    background: #fff;
+    line-height: 34px;
+    padding: 8px;
+    color: @fuOne;
+    outline: none;
+    -webkit-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+    font-family: @font;
+    border-bottom: 1px @input-b-c solid;
+    &:focus {
+        border-bottom: 1px darken(@input-b-c, 3%) solid;
     }
 }
 
