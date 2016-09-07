@@ -27,8 +27,12 @@ vue+vue-router+express+mongoose制作的简单博客程序（自用）
 
 ### 安装：
 
-> npm run dev
-localhost:3000
+> npm run build
+> node app.js
+
+### 2016-9-7更新
+好久没提交了，使用co和thunkify重构了一下后端，还有不足的地方欢迎指教~。
+* 后台api基本完成，完善以后重构下前端。
 
 ### 2016-8-6更新
 更改了多说样式

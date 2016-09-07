@@ -1,3 +1,4 @@
+"use strict";
 module.exports = {
     db:"test",                           // db name
     host:"localhost",                 // hostname

@@ -1,3 +1,4 @@
+"use strict";
 const mongoose = require("mongoose");
 const users = require("../models/users")
 const { wrap: async } = require('co');

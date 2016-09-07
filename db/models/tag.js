@@ -1,3 +1,4 @@
+"use strict";
 let mongoose = require("../db");
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId

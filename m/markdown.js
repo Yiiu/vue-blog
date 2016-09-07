@@ -1,3 +1,4 @@
+"use strict";
 let hljs = require('highlight.js');
 
 var md = require('markdown-it')({

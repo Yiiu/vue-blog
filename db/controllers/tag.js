@@ -1,3 +1,4 @@
+"use strict";
 const mongoose = require("mongoose");
 const tag = require("../models/tag");
 const { wrap: async } = require('co');

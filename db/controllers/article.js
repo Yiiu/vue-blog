@@ -1,3 +1,4 @@
+"use strict";
 const article = require("../models/article")
 
 

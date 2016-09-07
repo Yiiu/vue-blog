@@ -1,3 +1,4 @@
+"use strict";
 const article = require("../db/controllers/article");
 const user = require("../db/controllers/users");
 const type = require("../db/controllers/type");

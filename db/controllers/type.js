@@ -1,3 +1,4 @@
+"use strict";
 let mongoose = require("mongoose");
 let type = require("../models/type");
 let article = require("./article")

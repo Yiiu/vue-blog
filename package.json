@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --display-error-details --progress --colors --watch",
+    "build": "webpack --colors --watch",
     "start": "cross-env NODE_ENV=dev supervisor -i client app"
   },
   "author": "",

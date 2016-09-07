@@ -1,3 +1,4 @@
+"use strict";
 var qiniu = require("qiniu");
 
 module.exports = function(Path){

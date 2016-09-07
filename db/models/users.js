@@ -1,3 +1,4 @@
+"use strict";
 var mongoose = require("../db.js");
 var Schema = mongoose.Schema;
 var userSchema = new Schema({
