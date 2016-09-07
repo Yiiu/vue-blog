@@ -41,18 +41,4 @@ exports.addArt = (tag,id,callback) => {
 // 删除type里的文章 
 exports.delArt = (types, id, callback) => {
     type.update({"_id":types}, {"$pull":{"article":id}}, callback)
-} 
-/*
-
-// 查询标签
-// 删除文章标签，先删除type的文章，然后更改文章的type
-type.delid = function(tag, id, callback){
-    type.update({"_id":tag},{"$pull":{"article":id}},function(err, data){
-        if(err){
-            return callback("err");
-        }else {
-            return callback(data);
-        }
-    })
 }
- */
