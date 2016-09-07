@@ -43,9 +43,6 @@ div.admin-box {
     }
 }
 </style>
-    <headers></headers>
-    <navs></navs>
-    <router-view v-if="loading"></router-view>
 </template>
 <script>
 import { go } from '../../store/actions';
@@ -68,9 +65,10 @@ export default {
     },
     ready: function(){
         this.$http.post("/checklogin",).then((response)=>{
-            if(response.body.status == "fail"){
+            if(response.data.status == "fail"){
                 window.location.href = "#/login";
             }else {
+                console.log(response)
                 this.loading = true
             }
         })

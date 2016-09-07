@@ -1,6 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
 module.exports = {
     devtool: false,
     entry: {
@@ -8,7 +10,7 @@ module.exports = {
       vendors: ['vue','vue-router'],
     },
     output: {
-        path: "./dist",
+        path: __dirname + '/dist/',
         filename: "./script/[name].js",
         chunkFilename: './script/[id]-or.js'
     },

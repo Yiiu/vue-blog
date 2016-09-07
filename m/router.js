@@ -1,12 +1,22 @@
 const article = require("../db/controllers/article");
 const user = require("../db/controllers/users");
+const type = require("../db/controllers/type");
 module.exports = (app) => {
-	// 全部文章
-    app.post("/index", article.index)
-    // 文章详情
-    app.post("/article", article.edit)
+    // user 
     app.post("/login", user.login)
+    app.post("/logon", user.logon)
     app.post("/checklogin", user.checkLogin)
+
+	// 文章
+    app.get("/index", article.index)
+    app.post("/article", article.edit)
+    app.post("/admin/add", user.requiresLogin, article.add)
+    app.delete("/del/article/:id", user.requiresLogin, article.del)
+    app.post("/admin/update", user.requiresLogin, article.update)
+
+    // type
+    app.post("/admin/addtype", user.requiresLogin, type.add)
+    app.get("/types", type.finds)
     /*
 	const routers = {
 		admin: require("./router/admin"),
@@ -26,12 +36,12 @@ module.exports = (app) => {
 
 
     // admin添加文章
-    app.post("/admin/add", routers.admin.articleAdd)
+    app.post("/admion/add", routers.admin.articleAdd)
     app.post("/admin",routers.admin.index)
     app.post("/admin/id", routers.admin.edit)
     app.post("/admin/update", routers.admin.update)
     app.post("/admin/del", routers.admin.del)
-    app.post("/admin/addtype", routers.admin.addtype)
+    app.post("/admin/addtype", ruters.admin.addtype)
 
     app.post("/types", routers.admin.types)
     app.post("/tags", routers.admin.tags)

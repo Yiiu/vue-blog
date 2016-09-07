@@ -1,7 +1,7 @@
 <template>
     <div class="tag">
         <label>
-            <span v-for="data in tags"
+            <span v-for="data in tags" v-if="data.name == null"
                 @mouseover="delClass($index, 't')"
                 @mouseout="delClass($index, 's')"
                 @click="delTag($index)"
@@ -44,9 +44,6 @@ export default {
                     this.tags = this.tags.isOr(); 
                 }
             }
-        },
-        delTag: function(index) {
-            console.log(index)
         },
         delClass: function(index, inst){
             if(inst == "t"){

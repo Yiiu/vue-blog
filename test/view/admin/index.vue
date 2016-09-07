@@ -77,16 +77,15 @@ export default {
             this.alert = true;
         },
         del:function() {
-            this.$http.post("/admin/del",{
-                id:this.id
-            }).then((response)=>{
-                if(response.data.op != "true"){
+            this.$http.delete("/del/article/"+this.id,).then((response)=>{
+                if(response.data.status == "fail"){
                     this.alertshow(true)
                     this.alertstyle("warn")
                     this.alerttitle("删除失败！！")
                 }else {
                     this.alertshow(true)
                     this.alerttitle("删除成功！！")
+                    console.log(response)
                     this.$http.post("/admin",{
                         t:0
                     }).then((response)=>{
@@ -137,7 +136,7 @@ export default {
     },
     ready: function(){
         this.loadingin(true)
-        this.$http.post("/index",{
+        this.$http.get("/index",{
             t:0
         }).then((response)=>{
             this.data = response.data.data;

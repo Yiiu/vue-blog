@@ -21,5 +21,5 @@ var userSchema = new Schema({
         default: Date.now
     },
 })
-var users = mongoose.model("login", userSchema);
+var users = mongoose.model("user", userSchema);
 module.exports = users;

@@ -3,8 +3,14 @@ var Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId
 
 var articleSchema = new Schema ({
-    title: String,
-    author: String,
+    title: {
+        type: String,
+        unique:true,
+    },
+    author: {
+        type: ObjectId,
+        ref:"user"
+    },
     vistits: {
         type: Number,
         default: 0
@@ -18,10 +24,12 @@ var articleSchema = new Schema ({
         ref:"tag"
     }],
     create_time:{
-        type: Array,
+        type : Date, 
+        default: Date.now
     },
     update_time:{
-        type: Array,
+        type : Date, 
+        default: Date.now
     },
     indexImg: {
         type:String,
@@ -31,4 +39,50 @@ var articleSchema = new Schema ({
     content: String
 })
 let article = mongoose.model("article", articleSchema);
+
+article.finds = (page, limit , callback) => {
+    if(limit == null) {
+        limit = 10;
+    }
+    article
+    .find()
+    .skip(page*limit)
+    .limit(limit)
+    .populate({
+        path: "author",
+        select: "name _id avatar profile"
+    })
+    .populate({
+        path: "type",
+        select: "name _id"
+    })
+    .populate({
+        path: "tags",
+        select: "name"
+    })
+    .exec(callback)
+}
+article.edit = (id, callback) => {
+    article
+    .findById(id)
+    .populate({
+        path: "tags",
+        select: "name _id"
+    })
+    .populate({
+        path: "type",
+        select: "name _id"
+    })
+    .exec(callback)
+}
+article.add = (data, callback) => {
+    article.create(data, callback)
+}
+
+article.addTag = (id, tag, callback) => {
+    article.update({"_id":id},{"$addToSet":{"tags":tag}},callback)
+}
+article.del = (id,callback) => {
+    article.remove({"_id":id},callback);
+}
 module.exports = article;

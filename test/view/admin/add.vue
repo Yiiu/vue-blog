@@ -4,7 +4,7 @@
         <div class="col-5 p-r-c" >
             <select class="types" v-model="data.type">
                 <option value="">未分类</option>
-                <option value="{{data._id}}" v-for="data in type">{{ data.name }}</option>
+                <option value="{{data._id}}" v-for="data in type.data">{{ data.name }}</option>
             </select>
         </div>
         <div class="col-5 p-l-c">
@@ -36,7 +36,7 @@ export default {
                 type:"",
             },
             tags:[],
-            type:[]
+            type:{}
         }
     },
     methods:{
@@ -50,8 +50,9 @@ export default {
     components: {
         tag
     },
-    init:function(){
-        this.$http.post("/types").then((response) =>{
+    ready:function(){
+        this.$http.get("/types").then((response) =>{
+            console.log(response)
             this.type = response.data;
         })
     }

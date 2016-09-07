@@ -62,7 +62,7 @@ header.index {
     margin-bottom: 60px;
     position: fixed;
     width: 100%;
-    background: rgba(255,255,255,.96);
+    background: #fff;
     color: @7;
     z-index: 999;
     i {

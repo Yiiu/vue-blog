@@ -1,39 +1,40 @@
 const mongoose = require("mongoose");
 const users = require("../models/users")
-const co = require('co');
+const { wrap: async } = require('co');
 const md5 = require("md5");
 
-exports.login = (req, res) => {
+exports.login = async( function*(req, res) {
     let name = req.body.name;
     let password = md5(req.body.password);
-    co( function*() {
-        return users
-        .findOne({"name":name})
-        .exec()
-    }).then((data)=>{
-        console.log(data)
-        if(data == null){
+    let data = yield users
+    .findOne({"name":name})
+    .exec()
+    if(data == null){
+        res.jsonp({
+            "status":"fail",
+            "msg":"账号错误"
+        })
+    }else {
+        if(name == data.name &&  password == data.password){
+            req.session.name = data.name;
+            req.session._id = data._id;
+            req.session.sign = "true";
+            res.jsonp({
+                "status":"success",
+            })
+        }else if (password != data.password){
             res.jsonp({
                 "status":"fail",
-                "msg":"账号错误"
+                "msg":"密码错误"
             })
-        }else {
-            if(name == data.name &&  password == data.password){
-                req.session.name = data.name;
-                req.session.sign = "true";
-                res.jsonp({
-                    "status":"success",
-                })
-            }else if (password != data.password){
-                res.jsonp({
-                    "status":"fail",
-                    "msg":"密码错误"
-                })
-            }
         }
-    })
-}
-exports.checkLogin = (req, res, next) => {
+    }
+})
+exports.logon = async(function* (req, res) {
+    req.body.password = md5(req.body.password);
+    users.create(req.body)
+})
+exports.checkLogin = async(function* (req, res, next){
     if(req.session.sign == "true") {
         res.jsonp({
             "status":"success",
@@ -46,8 +47,8 @@ exports.checkLogin = (req, res, next) => {
         })
         return false;
     }
-}
-exports.requiresLogin = (req, res, next) => {
+})
+exports.requiresLogin = async(function* (req, res, next){
     if(req.session.sign == "true") {
         next()
     } else {
@@ -56,10 +57,7 @@ exports.requiresLogin = (req, res, next) => {
             "msg":"请登录！！！！"
         })
     }
-}
-exports.logon = (req, res) => {
-
-}
+})
 /*
 users.finds = function(userName, callback){
     users.findOne({name:userName}, function(err, data){

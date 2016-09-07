@@ -2,8 +2,8 @@
     <div class="col-5-c index animated" v-if="loading" transition="op">
         <div v-if="loading">
             <article v-for="article in data">
-                <h1 class="center"><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
-                <p  class="center">
+                <h1><a v-link="{ name:'article',params : {id : article._id}}">{{article.title}}</a></h1>
+                <p>
                     <span><i class="icon-head"></i>{{ article.author }}</span>
                     <span><i class="icon-clock"></i>{{ article.update_time[0] }}</span>
                     <span><i class="icon-eye"></i>{{ article.vistits }}</span>
@@ -82,20 +82,22 @@ export default {
             alertsmall:false,
             alert:false,
             loading:false,
+            bool: this.nulls
         }
     },
     methods:{
         next:function(){
             var that =this;
             this.page++;
-            this.$http.post("/index",{
+            this.$http.get("/index",{
                 t:this.page
             }).then((response)=>{
-                response.data.forEach(function(item){
-                    that.data.push(item);
-                })
-                if(response.data == ""){
+                if(response.data.data.length == 0){
                     this.nulls = true;
+                }else {
+                    response.data.forEach(function(item){
+                        that.data.push(item);
+                    })
                 }
             })
         },
@@ -112,7 +114,7 @@ export default {
     },
     ready: function(){
         this.loadingin(true)
-        this.$http.post("/index",{
+        this.$http.get("/index",{
             t:0
         }).then((response)=>{
             this.data = response.data.data;
