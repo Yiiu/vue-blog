@@ -45,12 +45,16 @@ ps:tag在添加文章时会自动添加，删除文章时加入tag没有别的�
 ### 安装：
 node4.x:
 
-> node --harmony_destructuring app.js
+> npm install
 
-> node app.js
+> npm run build
+
+> node --harmony_destructuring app.js
 
 
 node6.x:
+
+> npm install
 
 > npm run build
 
