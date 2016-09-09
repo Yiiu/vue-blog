@@ -41,5 +41,5 @@ app.use(express.static('dist'));
 router(app);
 
 app.listen(8080, function(){
-    console.log('App (dev) is now running on port 3000!');
+    console.log('App (dev) is now running on port 8080!');
 });

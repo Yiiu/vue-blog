@@ -2,7 +2,6 @@
 const mongoose = require("mongoose");
 const tag = require("../models/tag");
 const { wrap: async } = require('co');
-const co = require('co');
 const thunkify = require('thunkify-wrap');
 
 // 查询一个tag

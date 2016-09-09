@@ -4,6 +4,21 @@ vue+vue-router+express+mongoose制作的简单博客程序（自用）
 
 ===
 
+### 暂时尚未完成（慎用）
+
+/logon 注册
+
+/login 登陆
+
+/admin/add 添加文章
+
+/admin/article:id 修改文章
+
+/admin/addtype 添加标签
+
+ps:tag在添加文章时会自动添加，删除文章时加入tag没有别的文章的话会自动删除。
+
+
 简单的个人博客程序，暂时完成了一下功能：
 
 - [x] admin登录
@@ -28,8 +43,16 @@ vue+vue-router+express+mongoose制作的简单博客程序（自用）
 - [ ] 加入vuex
 
 ### 安装：
+node4.x:
 
 > npm run build
+
+> node app.js
+
+
+node6.x:
+
+> node --harmony_destructuring app.js
 
 > node app.js
 
