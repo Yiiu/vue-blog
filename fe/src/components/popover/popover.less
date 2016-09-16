@@ -1,0 +1,46 @@
+@import "../../assets/style/color";
+
+.popover-box {
+    position: absolute;
+    padding-top: 4px;
+    display: inline-block;
+    .popover-content{
+        border-radius: 4px;
+        border: 1px @Border-C solid;
+        box-shadow: 0 0 20px -5px #ccc;
+        .popover-delta {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            margin-left: -5px;
+            border-width: 5px;
+            border-top-width: 0;
+            border-color: transparent;
+            border-bottom-color: @Border-C;
+            border-style: solid;
+            &:before{
+                position: absolute;
+                content: "";
+                top: 1px;
+                margin-left: -4px;
+                border-color: transparent;
+                border-bottom: #fff;
+                border-style: solid;
+                border-width: 4px;
+                border-top-width: 0;
+            }
+        }
+        .popover-title {
+            padding: 0 16px;
+            line-height: 36px;
+            border-bottom: 1px @Border-C solid;
+            text-align: center;
+        }
+        .popover-text {
+            padding: 4px 16px;
+            line-height: 1.6;
+            border-bottom: 1px @Border-C solid;
+            text-align: center;
+        }
+    }
+}

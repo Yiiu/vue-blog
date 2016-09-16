@@ -1,0 +1,37 @@
+@import "./color";
+.btn {
+    display: inline-block;
+    transition: 0.3s all;
+    text-align: center;
+    line-height: 1.4;
+    font-size: 14px;
+    border-radius: 4px;
+    background: transparent;
+    padding: 4px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: "Open Sans","Helvetica Neue",Helvetica,"PingFang SC","Microsoft Yahei","WenQuanYi Micro Hei","微软雅黑",Arial,Verdana,sans-serif !important;
+}
+.btn-fill(@Color, @FColor, @HFColor:@gray){
+    border: 1px @Color solid;
+    color: @FColor;
+    &:hover{
+        background: lighten(@Color, 2%);
+        color: @HFColor;
+    }
+}
+.btn-default {
+    .btn-fill(#ebebeb, @gray);
+}
+.btn-primary {
+    .btn-fill(@blue, @blue, #fff);
+}
+.btn-success {
+    .btn-fill(@green, @green, #fff);
+}
+.btn-warning {
+    .btn-fill(@yellow, @yellow, #fff);
+}
+.btn-danger {
+    .btn-fill(@red, @red, #fff);
+}

@@ -36,10 +36,9 @@ app.all("*", function (req, res, next) {
 app.use(require('express-promise')());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(express.static('dist'));
 
 router(app);
 
-app.listen(8080, function(){
-    console.log('App (dev) is now running on port 8080!');
+app.listen(3000, function(){
+    console.log('App (dev) is now running on port 3000!');
 });

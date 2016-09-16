@@ -17,13 +17,13 @@ exports.index = async(function *(req, res){
         let data = yield thunkify(article.finds)(page, limit)
         try{
             res.jsonp({
-                "status":"success",
-                "data":data
+                status:"success",
+                data:data
             })
         } catch(err){
             res.jsonp({
-                "status":"fail",
-                "msg":"加载失败"
+                status:"fail",
+                msg:"加载失败"
             })
         }
     })
