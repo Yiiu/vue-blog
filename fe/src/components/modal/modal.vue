@@ -42,7 +42,6 @@
             </div>
         </div>
     </div>
-    <div class="mask" @click="back" v-if="data.isshow" transition="mask"></div>
 </template>
 <script>
 export default {

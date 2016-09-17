@@ -7,7 +7,7 @@
 <style >
 #app {
   margin-top: 15px;
-  margin-left: 50px;
+  margin-left: 100px;
 }
 </style>
 <script>

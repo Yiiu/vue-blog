@@ -1,46 +1,136 @@
 @import "../../assets/style/color";
-
+.popover-white {
+    .popover-content{
+        border: 1px @Border-C solid !important;
+        background: #fff;
+    }
+}
+.popover-black {
+    .popover-content{
+        border: 1px @y-bo-c solid !important;
+        background: @y-bg-c;
+        color: @y-fo-c;
+        .popover-title {
+            border-bottom: 1px @y-bo-c solid !important;
+        }
+    }
+}
+.popover-box-bottom {
+    padding-top: 4px;
+    .popover-content{
+        .popover-delta{
+            left: 50%;
+            margin-left: -5px;
+            border-top-width: 0 !important;
+            border-bottom-color: @Border-C !important;
+            top: 0;
+            &:before{
+                content: " ";
+                top: 1px;
+                margin-left: -6px;
+                border-top-width: 0 !important;
+                border-bottom-color: #fff !important;
+            }
+        }
+    }
+}
+.popover-box-top {
+    padding-bottom: 4px;
+    .popover-content{
+        .popover-delta{
+            left: 50%;
+            margin-left: -5px;
+            border-bottom-width: 0 !important;
+            border-top-color: @Border-C !important;
+            bottom: 0;
+            &:before{
+                content: " ";
+                bottom: 1px;
+                margin-left: -6px;
+                border-bottom-width: 0 !important;
+                border-top-color: #fff !important;
+            }
+        }
+    }
+}
+.popover-box-right {
+    padding-left: 4px;
+    .popover-content{
+        .popover-delta{
+            top: 50%;
+            margin-top: -3px;
+            margin-left: -7px;
+            left: 7px;
+            border-left-width: 0 !important;
+            border-right-color: #d9d9d9 !important;
+            &:before{
+                content: " ";
+                left: 1px;
+                bottom: -6px;
+                border-left-width: 0 !important;
+                border-right-color: #fff !important;
+            }
+        }
+    }
+}
+.popover-box-left {
+    padding-right: 4px;
+    .popover-content{
+        .popover-delta{
+            top: 50%;
+            margin-top: -3px;
+            right: 0;
+            border-right-width: 0 !important;
+            border-left-color: #d9d9d9 !important;
+            &:before{
+                content: " ";
+                right: 1px;
+                bottom: -6px;
+                border-right-width: 0 !important;
+                border-left-color: #fff !important;
+            }
+        }
+    }
+}
 .popover-box {
     position: absolute;
-    padding-top: 4px;
     display: inline-block;
     .popover-content{
-        border-radius: 4px;
-        border: 1px @Border-C solid;
-        box-shadow: 0 0 20px -5px #ccc;
+        border-radius: 6px;
+        box-shadow: 0 0 20px -10px #ccc;
         .popover-delta {
             position: absolute;
-            left: 50%;
-            top: 0;
-            margin-left: -5px;
-            border-width: 5px;
-            border-top-width: 0;
+            border-width: 7px;
             border-color: transparent;
-            border-bottom-color: @Border-C;
             border-style: solid;
+            border-width: 5px;
             &:before{
                 position: absolute;
                 content: "";
-                top: 1px;
-                margin-left: -4px;
                 border-color: transparent;
-                border-bottom: #fff;
                 border-style: solid;
-                border-width: 4px;
-                border-top-width: 0;
+                border-width: 6px;
             }
         }
         .popover-title {
             padding: 0 16px;
             line-height: 36px;
-            border-bottom: 1px @Border-C solid;
             text-align: center;
+            border-bottom: 1px @Border-C solid;
         }
         .popover-text {
             padding: 4px 16px;
             line-height: 1.6;
-            border-bottom: 1px @Border-C solid;
             text-align: center;
         }
     }
+}
+
+/* 必需 */
+.popover-transition {
+  transition: opacity .3s ease;
+}
+
+.popover-enter, .popover-leave {
+  opacity: 0;
 }

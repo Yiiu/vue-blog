@@ -18,13 +18,20 @@
             成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案
             成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案</p>
         </y-alert>
-        <y-popover><span>sasdd</span></y-popover>
+        <y-popover :content="'asdfasdfcxzv'" :placement="'bottom'" :trigger="'click'"><span>test</span></y-popover>
+        <y-popover :title="'saafsdfsdfa'" :content="'asdfasdfcxzv'" :placement="'bottom'" :trigger="'blur'">
+            <input type="text" slot="content">
+        </y-popover>
+        <y-popover :title="'testst'">
+            <span slot="content">testst</span>
+        </y-popover>
 </template>
 <script type="text/javascript">
 import ySelect from "./components/select"
 import yModal from "./components/modal"
 import yAlert from "./components/alert"
 import yPopover from "./components/popover"
+import yPopconfirm from "./components/popconfirm"
 export default {
     data:function(){
         return {
@@ -57,7 +64,8 @@ export default {
         ySelect,
         yModal,
         yAlert,
-        yPopover
+        yPopover,
+        yPopconfirm
     }
 }
 </script>

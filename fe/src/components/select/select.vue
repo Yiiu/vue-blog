@@ -37,7 +37,7 @@ export default {
     },
     ready:function(){
         let that = this;
-        document.body.addEventListener('click',that.ifEl)
+        document.addEventListener('click',that.ifEl)
     },
     methods:{
         on:function(){
@@ -62,6 +62,18 @@ export default {
           // 事件回调内的 `this` 自动绑定到注册它的实例上
           this.isshow = msg
         }
+    },
+    watch:{
+        "isshow":function(e,news){
+            if(!e){
+                document.removeEventListener('click',this.ifEl)
+            }else{
+                document.addEventListener('click',this.ifEl)
+            }
+        }
+    },
+    beforeDestroy(){
+        document.removeEventListener('click',this.ifEl)
     }
 }
 </script>
