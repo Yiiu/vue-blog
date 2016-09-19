@@ -19,7 +19,7 @@
             </div>
             <div class="popover-text">
                 {{content}}
-                <slot name="popconfirm"></slot>
+                <slot name="button"></slot>
             </div>
         </div>
     </div>

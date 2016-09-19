@@ -1,8 +1,9 @@
 <template>
     <div class="popconfirm-box">
         <popover :title="isshow" :placement="placement" :trigger="trigger">
-            <div slot="popconfirm">
+            <template slot="button">
                 <button class="btn" 
+                
                     :class="{
                         'btn-default' : backBtn.type == '',
                         'btn-primary': backBtn.type == 'primary',
@@ -39,7 +40,7 @@
                     {{okBtn.text}}
 
                 </button>
-            </div>
+            </template>
         </popover>
     </div>
 </template>
