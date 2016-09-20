@@ -1,48 +1,46 @@
 <template>
-    <div class="popconfirm-box">
-        <popover :title="isshow" :placement="placement" :trigger="trigger">
-            <template slot="button">
-                <button class="btn" 
-                
-                    :class="{
-                        'btn-default' : backBtn.type == '',
-                        'btn-primary': backBtn.type == 'primary',
-                        'btn-success': backBtn.type == 'success',
-                        'btn-warning': backBtn.type == 'warning',
-                        'btn-danger': backBtn.type == 'danger',
-                    }"
+    <popover :isshow="isshow" :title="title" :placement="placement" :trigger="trigger" :style="'popconfirm'">
+        <template slot="content"><slot></slot></template>
+        <div slot="popconfirm">
+            <button class="btn" 
+                :class="{
+                    'btn-default' : back.type == '',
+                    'btn-primary': back.type == 'primary',
+                    'btn-success': back.type == 'success',
+                    'btn-warning': back.type == 'warning',
+                    'btn-danger': back.type == 'danger',
+                }"
 
-                    v-if="backBtn.show"
+                v-if="back.show"
 
-                    @click="backE"
+                @click="backE"
 
-                >
+            >
 
-                    {{backBtn.text}}
+                {{back.text}}
 
-                </button>
+            </button>
 
-                <button class="btn" 
-                    :class="{
-                        'btn-default' : okBtn.type == '',
-                        'btn-primary': okBtn.type == 'primary',
-                        'btn-success': okBtn.type == 'success',
-                        'btn-warning': okBtn.type == 'warning',
-                        'btn-danger': okBtn.type == 'danger',
-                    }"
+            <button class="btn" 
+                :class="{
+                    'btn-default' : ok.type == '',
+                    'btn-primary': ok.type == 'primary',
+                    'btn-success': ok.type == 'success',
+                    'btn-warning': ok.type == 'warning',
+                    'btn-danger': ok.type == 'danger',
+                }"
 
-                    v-if="okBtn.show"
+                v-if="ok.show"
 
-                    @click="okE"
+                @click="okE"
 
-                >
+            >
 
-                    {{okBtn.text}}
+                {{ok.text}}
 
-                </button>
-            </template>
-        </popover>
-    </div>
+            </button>
+        </div>
+    </popover>
 </template>
 <script>
 import popover from "../popover"
@@ -64,18 +62,22 @@ export default {
         },
         ok:{
             type:Object,
-            default:{
-                show: true,
-                type:"primary",
-                text:"确定",
+            default: function(){
+                return {
+                    show: true,
+                    type:"primary",
+                    text:"确定",
+                }
             }
         },
         back:{
             type:Object,
-            default:{
-                show: true,
-                type:"",
-                text:"取消",
+            default: function(){
+                return {
+                    show: true,
+                    type:"",
+                    text:"取消",
+                }
             }
         },
         okBtn:Function,

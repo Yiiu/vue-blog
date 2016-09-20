@@ -19,12 +19,20 @@
             成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案成功提示的文案</p>
         </y-alert>
         <y-popover :content="'asdfasdfcxzv'" :placement="'bottom'" :trigger="'click'"><span>test</span></y-popover>
-        <y-popover :title="'saafsdfsdfa'" :content="'asdfasdfcxzv'" :placement="'bottom'" :trigger="'blur'">
+        <y-popover :placement="'right'">
+            <span slot="content">asdf</span>
+            <ul slot="html">
+                <li><a href="">qwer</a></li>
+                <li><a href="">qwer</a></li>
+                <li><a href="">qwer</a></li>
+            </ul>
+        </y-popover>
+        <y-popover :title="'saafsdfsdfa'" :content="'asdfasdfcxzv'" :placement="'bottom'">
             <input type="text" slot="content">
         </y-popover>
-        <y-popover :title="'testst'">
-            <span slot="content">testst</span>
-        </y-popover>
+        <y-popconfirm :title="'testst'">
+            <span>ssssss</span>
+        </y-popconfirm>
 </template>
 <script type="text/javascript">
 import ySelect from "./components/select"

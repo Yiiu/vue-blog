@@ -95,8 +95,18 @@
 .popover-box {
     position: absolute;
     display: inline-block;
+    &.popconfirm {
+        .popover-title {
+            text-align: left !important;
+            padding-bottom: 6px;
+            i {
+                color: @yellow;
+            }
+        }
+    }
     .popover-content{
         border-radius: 6px;
+        padding: 6px 20px;
         box-shadow: 0 0 20px -10px #ccc;
         .popover-delta {
             position: absolute;
@@ -113,15 +123,24 @@
             }
         }
         .popover-title {
-            padding: 0 16px;
             line-height: 36px;
             text-align: center;
-            border-bottom: 1px @Border-C solid;
         }
         .popover-text {
             padding: 4px 16px;
             line-height: 1.6;
             text-align: center;
+            border-top: 1px @Border-C solid;
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+        div[slot="popconfirm"] {
+            margin-left: 37px;
+            margin-right: -12px;
+            .btn {
+                font-size: 12px;
+                padding: 2px 6px;
+            }
         }
     }
 }

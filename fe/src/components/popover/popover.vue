@@ -6,21 +6,24 @@
             'popover-box-top':placement == 'top',
             'popover-box-right':placement == 'right',
             'popover-box-left':placement == 'left',
+            'popconfirm':style == 'popconfirm'
         }"
         v-el:pop
         v-show="isshow"
         transition="popover"
-    >
+        >
         <div class="popover-content">
             <div class="popover-delta">
             </div>
+            <slot name="html"></slot>
             <div class="popover-title" v-if="title!=''">
+                <i class="iconfont icon-infocircle" v-if="style"></i>
                 {{title}}
             </div>
-            <div class="popover-text">
+            <div class="popover-text" v-if="content!=''">
                 {{content}}
-                <slot name="button"></slot>
             </div>
+            <slot name="popconfirm" class="popconfirm-btn"></slot>
         </div>
     </div>
 </template>
@@ -51,7 +54,8 @@ export default {
         trigger:{
             type:String,
             default:"click"
-        }
+        },
+        style:String,
     },
     // 获取el的位置
     // 然后获取

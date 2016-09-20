@@ -5,3 +5,5 @@
 [x] alert
 [x] modal
 [x] select
+[x] popover
+[x] popconfirm
