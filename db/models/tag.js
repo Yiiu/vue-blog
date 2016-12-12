@@ -15,16 +15,16 @@ let tagSchema = new Schema({
 })
 let tag = mongoose.model("tag", tagSchema);
 
-tag.add = function(data, callback){
-    tag.create({"name":data}, callback)
+tag.add = function(data){
+    return tag.create({"name":data})
 }
 
 tag.findId = function(id, callback){
-    tag.findById(id, callback)
+    return tag.findById(id).exec()
 }
 
-tag.findName = function(name, callback){
-    tag.findOne({"name":name}, callback)
+tag.findName = function(name){
+    return tag.findOne({"name":name}).exec()
 }
 
 // 查询一个tag
@@ -50,12 +50,12 @@ tag.finds = function(callback){
 }
 
 // 添加文章到tag：article
-tag.addArticle = function(tags,id,callback){
-    tag.update({"_id":tags},{"$addToSet":{"article":id}},callback)
+tag.addArticle = function(tags,id){
+    return tag.update({"_id":tags},{"$addToSet":{"article":id}})
 }
 // 删除文章到tag：article
 tag.delArticle = function(tags,id,callback){
-    tag.update({"_id":tags},{"$pull":{"article":id}},callback)
+    return tag.update({"_id":tags},{"$pull":{"article":id}})
 }
 
 

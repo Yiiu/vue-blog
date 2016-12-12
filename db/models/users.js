@@ -12,15 +12,29 @@ var userSchema = new Schema({
         type:String,
         unique:true
     },
+    emailmd5:{
+        type:String,
+        unique:true
+    },
     profile: {      // 简介
         type:String,
         default:"这个人很懒，啥也没留下。。。"
     },
-    avatar:String,
+    avater: {
+        type:String,
+        default:""
+    },
     create_data:{
         type: Date,
         default: Date.now
     },
 })
 var users = mongoose.model("user", userSchema);
+
+users.finds = (id) => {
+    return users.findById(id)
+    .select("name emailmd5 avater profile _id")
+    .exec()
+}
+
 module.exports = users;

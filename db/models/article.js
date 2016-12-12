@@ -25,27 +25,35 @@ var articleSchema = new Schema ({
         ref:"tag"
     }],
     create_time:{
-        type : Date, 
+        type : Date,
         default: Date.now
     },
     update_time:{
-        type : Date, 
+        type : Date,
         default: Date.now
     },
-    indexImg: {
+    time:[{
         type:String,
         default: ""
+    }],
+    cover: {
+        type:String,
+        default: ""
+    },
+    full:{
+        type:Boolean,
+        default: false
     },
     enabled: Boolean,
     content: String
 })
 let article = mongoose.model("article", articleSchema);
 
-article.finds = (page, limit , callback) => {
+article.all = (page, limit) => {
     if(limit == null) {
         limit = 10;
     }
-    article
+    return article
     .find()
     .skip(page*limit)
     .limit(limit)
@@ -55,35 +63,46 @@ article.finds = (page, limit , callback) => {
     })
     .populate({
         path: "type",
-        select: "name _id"
+        select: "name _id alias"
     })
     .populate({
         path: "tags",
         select: "name"
     })
-    .exec(callback)
+    .sort({'create_time':-1})
+    .exec()
 }
-article.edit = (id, callback) => {
-    article
+article.one = (id) => {
+    return article
     .findById(id)
+    .populate({
+        path: "author",
+        select: "name _id avatar profile"
+    })
     .populate({
         path: "tags",
         select: "name _id"
     })
     .populate({
         path: "type",
-        select: "name _id"
+        select: "name _id alias"
     })
-    .exec(callback)
+    .exec()
 }
-article.add = (data, callback) => {
-    article.create(data, callback)
+article.num = () => {
+    return article.count().exec()
+}
+article.add = (data) => {
+    return article.create(data)
 }
 
 article.addTag = (id, tag, callback) => {
     article.update({"_id":id},{"$addToSet":{"tags":tag}},callback)
 }
-article.del = (id,callback) => {
-    article.remove({"_id":id},callback);
+article.delType = (id, callback) => {
+    article.update({"_id":id}, {$unset:{"type":1}},callback)
+}
+article.del = (id) => {
+    return article.remove({"_id":id});
 }
 module.exports = article;
