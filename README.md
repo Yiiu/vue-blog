@@ -74,17 +74,4 @@ node6.x:
 分离了一些文件，更好维护，改用了marked，用了highlight来做代码高亮，微调了一些样式。
 ps:本想用jwt做登陆状态，想想还是算了，，，，
 
-# demo
-
-![tu](http://yu7er.qiniudn.com/2016-08-07%2016-24-21%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
-
-
-![tu](http://yu7er.qiniudn.com/2016-08-07%2016-21-41%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
-
-
-![tu](http://yu7er.qiniudn.com/2016-08-07%2016-22-48%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
-
-
-![tu](http://yu7er.qiniudn.com/2016-08-07%2016-20-31%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE.png)
-
 # 未完待续。。。。。
